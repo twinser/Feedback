@@ -1,4 +1,4 @@
-/* table style from http://coding.smashingmagazine.com/2008/08/13/top-10-css-table-designs/ */
+﻿/* table style from http://coding.smashingmagazine.com/2008/08/13/top-10-css-table-designs/ */
 
 p
 {
@@ -28,6 +28,7 @@ font-family:"Arial";
 }
 body
 {
+    font-family:"Arial";
 	line-height: 1.6em;
 }
 
