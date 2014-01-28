@@ -68,13 +68,13 @@ Add new user
 </h1>
 <form name="form4" method="post" action="checkadd.php">
 <p><h3> User type </h3>
-Lecturer <input type="radio" name="admin"  value="0" onclick="showall()" checked> <br>
+Lecturer <input type="radio" name="admin"  value="0" onclick="show('module1')" checked> <br>
 Admin   <input type="radio" name="admin" value="1" onclick="hideall()" > </p>
 <p>Username <input name="UserID" type="text" id="UserID" onkeyup="showResult(this.value)"> <div id="livesearch"></div> <br>
 Password <input name="Password" type="password" id="Password"></p>
 
-<select name="module1" id="module1" style="display: none;" onclick='show2()'>
-<option value="none" selected> - </option>
+<select name="module1" id="module1" style="display: none;" onclick="show2()">
+<option value="" selected> - </option>
 <?php 
 
 $sql = "SELECT * FROM Modules";
@@ -90,7 +90,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 ?>
 </select>
 <select name="module2" id="module2" style="display: none;" onclick='show3()'>
-<option value="" selected disabled>Module 2</option>
+<option value="" selected> - </option>
 <?php 
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
@@ -104,7 +104,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 ?>
 </select>
 <select name="module3" id="module3" style="display: none;" onclick='show4()'>
-<option value="" selected disabled>Module 3</option>
+<option value="" selected> - </option>
 <?php 
 
 $sql = "SELECT * FROM Modules";
@@ -119,7 +119,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 ?>
 </select>
 <select name="module4" id="module4" style="display: none;" onclick='show5()'>
-<option value="" selected disabled>Module 4</option>
+<option value="" selected> - </option>
 <?php 
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
@@ -133,7 +133,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 ?>
 </select>
 <select name="module5" id="module5" style="display: none;">
-<option value="" selected disabled>Module 5</option>
+<option value="" selected> - </option>
 <?php 
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
@@ -202,11 +202,13 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
   </script>
 <script type="text/javascript">
   function show2(){
-  if (document.getElementById('module1').value != 'none'){
+  if (document.getElementById('module1').value != ''){
   show('module2');
   }
   else {
   hide2345();
+  
+  }
   }
 </script>
 <script type="text/javascript">
@@ -217,6 +219,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
   else {
   hide345();
   }
+  }
 </script>
 <script type="text/javascript">
   function show4(){
@@ -225,6 +228,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
   }
   else {
   hide45();
+  }
   }
 </script>
 <script type="text/javascript">
@@ -235,6 +239,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
   else {
   show('module5');
 
+  }
   }
 </script>
 
