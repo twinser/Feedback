@@ -1,0 +1,62 @@
+/* table style from http://coding.smashingmagazine.com/2008/08/13/top-10-css-table-designs/ */
+
+p
+{
+font-family:"Arial";
+}
+h1
+{
+font-family:"Arial";
+}
+h2
+{
+font-family:"Arial";
+}
+
+h3
+{
+font-family:"Arial";
+}
+
+h4
+{
+font-family:"Arial";
+}
+table
+{
+font-family:"Arial";
+}
+body
+{
+	line-height: 1.6em;
+}
+
+
+#user-table
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	background: #fff;
+	margin: 45px;
+	width: 480px;
+	border-collapse: collapse;
+	text-align: left;
+}
+#user-table th
+{
+	font-size: 14px;
+	font-weight: normal;
+	color: #039;
+	padding: 10px 8px;
+	border-bottom: 2px solid #6678b1;
+}
+#user-table td
+{
+	border-bottom: 1px solid #ccc;
+	color: #669;
+	padding: 6px 8px;
+}
+#user-table tbody tr:hover td
+{
+	color: #009;
+}
