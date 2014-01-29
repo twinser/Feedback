@@ -73,7 +73,7 @@ Admin   <input type="radio" name="admin" value="1" onclick="hideall()" > </p>
 <div style="display: inline-block;"><p>Username <input name="UserID" type="text" id="UserID" onkeyup="showResult(this.value)"></p></div> <div style="display: inline-block;" id="livesearch"></div> 
 <p>Password <input name="Password" type="password" id="Password"></p>
 
-<select name="module1" id="module1" style="display: none;" onclick="show2()">
+<select name="module1" id="module1" style="display: none;" onclick="show2()" onChange="disableOptions1(this.selectedIndex)">
 <option value="" selected> - </option>
 <?php 
 
@@ -89,7 +89,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 
 ?>
 </select>
-<select name="module2" id="module2" style="display: none;" onclick='show3()'>
+<select name="module2" id="module2" style="display: none;" onclick="show3()" onChange="disableOptions2(this.selectedIndex)">
 <option value="" selected> - </option>
 <?php 
 $sql = "SELECT * FROM Modules";
@@ -103,7 +103,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 }
 ?>
 </select>
-<select name="module3" id="module3" style="display: none;" onclick='show4()'>
+<select name="module3" id="module3" style="display: none;" onclick="show4()" onChange="disableOptions3(this.selectedIndex)">
 <option value="" selected> - </option>
 <?php 
 
@@ -118,7 +118,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 }
 ?>
 </select>
-<select name="module4" id="module4" style="display: none;" onclick='show5()'>
+<select name="module4" id="module4" style="display: none;" onclick="show5()" onChange="disableOptions4(this.selectedIndex)">
 <option value="" selected> - </option>
 <?php 
 $sql = "SELECT * FROM Modules";
@@ -132,7 +132,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 }
 ?>
 </select>
-<select name="module5" id="module5" style="display: none;">
+<select name="module5" id="module5" style="display: none;" onChange="disableOptions5(this.selectedIndex)">
 <option value="" selected> - </option>
 <?php 
 $sql = "SELECT * FROM Modules";
@@ -149,7 +149,11 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 <p><input type="submit" name="SubmitAddUser" value="Submit"></p><br>
 </form>
 
-<script type="text/javascript">
+
+  <p><a href ="admin_login_success.php">Back</a></p>
+  <p><a href ="Logout.php">Log out</a></p>
+  
+  <script type="text/javascript">
 
   function show(id){ 
    document.getElementById(id).style.display='block';
@@ -243,9 +247,150 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
   }
 </script>
 
+<script type="text/javascript">
+function disableOptions1(x) {
+  if (x == 0){
+  for (var i=1;i<document.getElementById('module2').length;i++)
+  {
+  document.getElementById('module2').options[i].disabled = false;
+  document.getElementById('module3').options[i].disabled = false;
+  document.getElementById('module4').options[i].disabled = false;
+  document.getElementById('module5').options[i].disabled = false;
+  }
+  }
+  else
+  {
+  /*for (var i=1;i<document.getElementById('module2').length;i++)
+  {
   
-  <p><a href ="admin_login_success.php">Back</a></p>
-  <p><a href ="Logout.php">Log out</a></p>
+  document.getElementById('module2').options[i].disabled = false;
+  document.getElementById('module3').options[i].disabled = false;
+  document.getElementById('module4').options[i].disabled = false;
+  document.getElementById('module5').options[i].disabled = false;
+  
+  }*/
+  
+  document.getElementById('module2').options[x].disabled = true;
+  document.getElementById('module3').options[x].disabled = true;
+  document.getElementById('module4').options[x].disabled = true;
+  document.getElementById('module5').options[x].disabled = true;
+  }
+}
+  </script>
+<script type="text/javascript">
+function disableOptions2(x) {
+  if (x == 0){
+  for (var i=1;i<document.getElementById('module2').length;i++)
+  {
+  document.getElementById('module1').options[i].disabled = false;
+  document.getElementById('module3').options[i].disabled = false;
+  document.getElementById('module4').options[i].disabled = false;
+  document.getElementById('module5').options[i].disabled = false;
+  }
+  }
+  else
+  {
+  /*for (var i=1;i<document.getElementById('module2').length;i++)
+  {
+  document.getElementById('module1').options[i].disabled = false;
+  document.getElementById('module3').options[i].disabled = false;
+  document.getElementById('module4').options[i].disabled = false;
+  document.getElementById('module5').options[i].disabled = false;
+  }*/
+  document.getElementById('module1').options[x].disabled = true;
+  document.getElementById('module3').options[x].disabled = true;
+  document.getElementById('module4').options[x].disabled = true;
+  document.getElementById('module5').options[x].disabled = true;
+  }
+}
+  </script>
+  
+<script type="text/javascript">
+function disableOptions3(x) {
+  if (x == 0){
+  for (var i=1;i<document.getElementById('module2').length;i++)
+  {
+  document.getElementById('module1').options[i].disabled = false;
+  document.getElementById('module2').options[i].disabled = false;
+  document.getElementById('module4').options[i].disabled = false;
+  document.getElementById('module5').options[i].disabled = false;
+  }
+  }
+  else
+  {
+  /*for (var i=1;i<document.getElementById('module2').length;i++)
+  {
+  document.getElementById('module1').options[i].disabled = false;
+  document.getElementById('module2').options[i].disabled = false;
+  document.getElementById('module4').options[i].disabled = false;
+  document.getElementById('module5').options[i].disabled = false;
+  
+  }*/
+  document.getElementById('module1').options[x].disabled = true;
+  document.getElementById('module2').options[x].disabled = true;
+  document.getElementById('module4').options[x].disabled = true;
+  document.getElementById('module5').options[x].disabled = true;
+  }
+}
+</script>
+
+<script type="text/javascript">
+function disableOptions4(x) {
+  if (x == 0){
+  for (var i=1;i<document.getElementById('module2').length;i++)
+  {
+  document.getElementById('module1').options[i].disabled = false;
+  document.getElementById('module2').options[i].disabled = false;
+  document.getElementById('module3').options[i].disabled = false;
+  document.getElementById('module5').options[i].disabled = false;
+  }
+  }
+  else
+  {
+  /*for (var i=1;i<document.getElementById('module2').length;i++)
+  {
+  
+  document.getElementById('module1').options[i].disabled = false;
+  document.getElementById('module2').options[i].disabled = false;
+  document.getElementById('module3').options[i].disabled = false;
+  document.getElementById('module5').options[i].disabled = false;
+  }*/
+  document.getElementById('module1').options[x].disabled = true;
+  document.getElementById('module2').options[x].disabled = true;
+  document.getElementById('module3').options[x].disabled = true;
+  document.getElementById('module5').options[x].disabled = true;
+  }
+}
+</script>
+
+<script type="text/javascript">
+function disableOptions5(x) {
+  if (x == 0){
+  for (var i=1;i<document.getElementById('module2').length;i++)
+  {
+  document.getElementById('module1').options[i].disabled = false;
+  document.getElementById('module2').options[i].disabled = false;
+  document.getElementById('module3').options[i].disabled = false;
+  document.getElementById('module4').options[i].disabled = false;
+  }
+  }
+  else
+  {
+  /*for (var i=1;i<document.getElementById('module2').length;i++)
+  {
+  document.getElementById('module1').options[i].disabled = false;
+  document.getElementById('module2').options[i].disabled = false;
+  document.getElementById('module3').options[i].disabled = false;
+  document.getElementById('module4').options[i].disabled = false;
+  }*/
+  
+  document.getElementById('module1').options[x].disabled = true;
+  document.getElementById('module2').options[x].disabled = true;
+  document.getElementById('module3').options[x].disabled = true;
+  document.getElementById('module4').options[x].disabled = true;
+  }
+}
+</script>
 </body>
 </html>
 <?php ob_end_flush(); ?>
