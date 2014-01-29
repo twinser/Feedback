@@ -67,11 +67,11 @@ xmlhttp.send();
 Add new user
 </h1>
 <form name="form4" method="post" action="checkadd.php">
-<p><h3> User type </h3>
-Lecturer <input type="radio" name="admin"  value="0" onclick="show('module1')" checked> <br>
+<h3> User type </h3>
+<p>Lecturer <input type="radio" name="admin"  value="0" onclick="show('module1')" checked> <br>
 Admin   <input type="radio" name="admin" value="1" onclick="hideall()" > </p>
-<p>Username <input name="UserID" type="text" id="UserID" onkeyup="showResult(this.value)"> <div id="livesearch"></div> <br>
-Password <input name="Password" type="password" id="Password"></p>
+<div style="display: inline-block;"><p>Username <input name="UserID" type="text" id="UserID" onkeyup="showResult(this.value)"></p></div> <div style="display: inline-block;" id="livesearch"></div> 
+<p>Password <input name="Password" type="password" id="Password"></p>
 
 <select name="module1" id="module1" style="display: none;" onclick="show2()">
 <option value="" selected> - </option>

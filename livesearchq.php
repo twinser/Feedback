@@ -27,10 +27,10 @@ $count=mysqli_num_rows($result);
 
 // If result matched $q, table row must be 1 row
 if($count==1){
-echo "Passphrase already in use, please try another";
+echo '<img src="/images/Cross.svg" alt="Passphrase already in use, please try another" width="16" height="16">';
 }
 else{
-echo "Passphrase ok";
+echo '<img src="/images/Tick.svg" alt="Passphrase ok" width="16" height="16">';
 
 }
  

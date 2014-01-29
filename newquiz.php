@@ -198,7 +198,7 @@ echo '<option value="error" selected disabled>There has been an error.Please con
 <p>Single Lecture Feedback<input type="radio" name="wholemod"  value="1" onclick="lecture()"> <br>
 Whole Module Feedback<input type="radio" name="wholemod" value="0" onclick="module()"  checked> </p>
 
-<p><b>Passphrase:</b> <input name="Passphrase" type="text" <?php echo 'value="'.$_COOKIE['passphrase_mcook'].'" ' ?> id="Passphrase" onkeyup="showResult(this.value)"> <div id="livesearch"></div> </p>
+<div style="display: inline-block;"> <p> <b>Passphrase:</b> <input name="Passphrase" type="text" <?php echo 'value="'.$_COOKIE['passphrase_mcook'].'" ' ?> id="Passphrase" onkeyup="showResult(this.value)"></p></div> <div style="display: inline-block;" id="livesearch"></div>
 <p><b>Brief Description:</b> <input name="description" type="text" <?php echo 'value="'.$_COOKIE['description_mcook'].'" ' ?> id="description"></p>
 <p><b>Expiry Date:</b><input id="expdate" type="text" <?php echo 'value="'.$_COOKIE['expdate_mcook'].'" '?> name="expdate"><img src="images/cal.gif" onclick="javascript:NewCssCal('expdate', 'yyyyMMdd','','','','','future')" style="cursor:pointer"/></p>
 
