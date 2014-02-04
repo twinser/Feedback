@@ -62,7 +62,7 @@ xmlhttp.send();
 }
 </script>
 </head>
-<body onload="show('module1')">
+<body onload="Load()">
 <h1>
 Add new user
 </h1>
@@ -237,59 +237,71 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 </script>
 <script type="text/javascript">
   function show5(){
-  if (document.getElementById('module4').value == ''){
-  hide('module5');
+  if (document.getElementById('module4').value != ''){
+  show('module5');
   }
   else {
-  show('module5');
-
+  hide('module5');
   }
   }
 </script>
 
 <script type="text/javascript">
 function disableOptions1(x) {
-  if (x == 0){
+//variable prev is equal to the global prev1
+prev = window.prev1;
+//reset prev1 so it now contains the new value
+window.prev1 = x;
+  //If user has selected "-"
+  if (x === 0){
   for (var i=1;i<document.getElementById('module2').length;i++)
   {
+  //go through all each drop down and enable all options
+  document.getElementById('module1').options[i].disabled = false;
   document.getElementById('module2').options[i].disabled = false;
   document.getElementById('module3').options[i].disabled = false;
   document.getElementById('module4').options[i].disabled = false;
   document.getElementById('module5').options[i].disabled = false;
   }
+  //make sure "-" is selected on each dropdown
+  document.getElementById('module2').options[0].selected = true;
+  document.getElementById('module3').options[0].selected = true;
+  document.getElementById('module4').options[0].selected = true;
+  document.getElementById('module5').options[0].selected = true;
   }
+  //otherwise, user has selected another option
   else
   {
-  /*for (var i=1;i<document.getElementById('module2').length;i++)
-  {
+  //go through and re-enable the previously selected option
+  document.getElementById('module1').options[prev].disabled = false;
+  document.getElementById('module2').options[prev].disabled = false;
+  document.getElementById('module3').options[prev].disabled = false;
+  document.getElementById('module4').options[prev].disabled = false;
+  document.getElementById('module5').options[prev].disabled = false;
   
-  document.getElementById('module2').options[i].disabled = false;
-  document.getElementById('module3').options[i].disabled = false;
-  document.getElementById('module4').options[i].disabled = false;
-  document.getElementById('module5').options[i].disabled = false;
-  
-  }*/
-  
+  //disable the newly selected option
   document.getElementById('module2').options[x].disabled = true;
   document.getElementById('module3').options[x].disabled = true;
   document.getElementById('module4').options[x].disabled = true;
   document.getElementById('module5').options[x].disabled = true;
+  
+  
   }
 }
   </script>
 <script type="text/javascript">
 function disableOptions2(x) {
-  if (x == 0){
-  for (var i=1;i<document.getElementById('module2').length;i++)
-  {
-  document.getElementById('module1').options[i].disabled = false;
-  document.getElementById('module3').options[i].disabled = false;
-  document.getElementById('module4').options[i].disabled = false;
-  document.getElementById('module5').options[i].disabled = false;
-  }
-  }
-  else
-  {
+//variable prevn is equal to the global prevn, where n is the number of the dropdown box
+//e.g. prev2 is the previous from dd box 2
+prev2 = window.prev2;
+prev3 = window.prev3;
+prev4 = window.prev4;
+prev5 = window.prev5;
+//reset prev2 so it now contains the new value
+window.prev2 = x;
+  //If user has selected "-"
+  if (x === 0){
+  //next 6 lines not needed. TO BE DELETED.
   /*for (var i=1;i<document.getElementById('module2').length;i++)
   {
   document.getElementById('module1').options[i].disabled = false;
@@ -297,6 +309,49 @@ function disableOptions2(x) {
   document.getElementById('module4').options[i].disabled = false;
   document.getElementById('module5').options[i].disabled = false;
   }*/
+  
+  //go through and re-enable the previously selected option for each dd box from this one down
+  //dd2
+  document.getElementById('module1').options[prev2].disabled = false;
+  document.getElementById('module2').options[prev2].disabled = false;
+  document.getElementById('module3').options[prev2].disabled = false;
+  document.getElementById('module4').options[prev2].disabled = false;
+  document.getElementById('module5').options[prev2].disabled = false;
+  //dd3
+  document.getElementById('module1').options[prev3].disabled = false;
+  document.getElementById('module2').options[prev3].disabled = false;
+  document.getElementById('module3').options[prev3].disabled = false;
+  document.getElementById('module4').options[prev3].disabled = false;
+  document.getElementById('module5').options[prev3].disabled = false;
+  //dd4
+  document.getElementById('module1').options[prev4].disabled = false;
+  document.getElementById('module2').options[prev4].disabled = false;
+  document.getElementById('module3').options[prev4].disabled = false;
+  document.getElementById('module4').options[prev4].disabled = false;
+  document.getElementById('module5').options[prev4].disabled = false;
+  //dd5
+  document.getElementById('module1').options[prev5].disabled = false;
+  document.getElementById('module2').options[prev5].disabled = false;
+  document.getElementById('module3').options[prev5].disabled = false;
+  document.getElementById('module4').options[prev5].disabled = false;
+  document.getElementById('module5').options[prev5].disabled = false;
+  
+  //make sure "-" is selected on the below dropdowns  
+  document.getElementById('module3').options[0].selected = true;
+  document.getElementById('module4').options[0].selected = true;
+  document.getElementById('module5').options[0].selected = true;
+  }
+  //otherwise, user has selected another option
+  else
+  {
+  //go through and re-enable the previously selected option
+  document.getElementById('module1').options[prev].disabled = false;
+  document.getElementById('module2').options[prev].disabled = false;
+  document.getElementById('module3').options[prev].disabled = false;
+  document.getElementById('module4').options[prev].disabled = false;
+  document.getElementById('module5').options[prev].disabled = false;
+  
+  //disable the newly selected option
   document.getElementById('module1').options[x].disabled = true;
   document.getElementById('module3').options[x].disabled = true;
   document.getElementById('module4').options[x].disabled = true;
@@ -307,25 +362,58 @@ function disableOptions2(x) {
   
 <script type="text/javascript">
 function disableOptions3(x) {
-  if (x == 0){
-  for (var i=1;i<document.getElementById('module2').length;i++)
+//variable prevn is equal to the global prevn, where n is the number of the dropdown box
+//e.g. prev3 is the previous from dd box 3
+prev3 = window.prev3;
+prev4 = window.prev4;
+prev5 = window.prev5;
+//reset prev3 so it now contains the new value
+window.prev3 = x;
+  //If user has selected "-"
+  if (x === 0){
+  //next 6 lines not needed. TO BE DELETED.
+  /*  for (var i=1;i<document.getElementById('module2').length;i++)
   {
   document.getElementById('module1').options[i].disabled = false;
   document.getElementById('module2').options[i].disabled = false;
   document.getElementById('module4').options[i].disabled = false;
   document.getElementById('module5').options[i].disabled = false;
+  }*/
+  //go through and re-enable the previously selected option for each dd box from this one down
+  //dd3
+  document.getElementById('module1').options[prev3].disabled = false;
+  document.getElementById('module2').options[prev3].disabled = false;
+  document.getElementById('module3').options[prev3].disabled = false;
+  document.getElementById('module4').options[prev3].disabled = false;
+  document.getElementById('module5').options[prev3].disabled = false;
+  //dd4
+  document.getElementById('module1').options[prev4].disabled = false;
+  document.getElementById('module2').options[prev4].disabled = false;
+  document.getElementById('module3').options[prev4].disabled = false;
+  document.getElementById('module4').options[prev4].disabled = false;
+  document.getElementById('module5').options[prev4].disabled = false;
+  //dd5
+  document.getElementById('module1').options[prev5].disabled = false;
+  document.getElementById('module2').options[prev5].disabled = false;
+  document.getElementById('module3').options[prev5].disabled = false;
+  document.getElementById('module4').options[prev5].disabled = false;
+  document.getElementById('module5').options[prev5].disabled = false;
+  
+  //make sure "-" is selected on the below dropdowns
+  document.getElementById('module4').options[0].selected = true;
+  document.getElementById('module5').options[0].selected = true;
   }
-  }
+  //otherwise, user has selected another option
   else
   {
-  /*for (var i=1;i<document.getElementById('module2').length;i++)
-  {
-  document.getElementById('module1').options[i].disabled = false;
-  document.getElementById('module2').options[i].disabled = false;
-  document.getElementById('module4').options[i].disabled = false;
-  document.getElementById('module5').options[i].disabled = false;
+  //go through and re-enable the previously selected option
+  document.getElementById('module1').options[prev].disabled = false;
+  document.getElementById('module2').options[prev].disabled = false;
+  document.getElementById('module3').options[prev].disabled = false;
+  document.getElementById('module4').options[prev].disabled = false;
+  document.getElementById('module5').options[prev].disabled = false;
   
-  }*/
+  //disable the newly selected option
   document.getElementById('module1').options[x].disabled = true;
   document.getElementById('module2').options[x].disabled = true;
   document.getElementById('module4').options[x].disabled = true;
@@ -336,25 +424,51 @@ function disableOptions3(x) {
 
 <script type="text/javascript">
 function disableOptions4(x) {
-  if (x == 0){
-  for (var i=1;i<document.getElementById('module2').length;i++)
+//variable prevn is equal to the global prevn, where n is the number of the dropdown box
+//e.g. prev4 is the previous from dd box 4
+prev4 = window.prev4;
+prev5 = window.prev5;
+//reset prev4 so it now contains the new value
+window.prev4 = x;
+  //If user has selected "-"
+  if (x === 0){
+  //next 6 lines not needed. TO BE DELETED.
+  /*  for (var i=1;i<document.getElementById('module2').length;i++)
   {
   document.getElementById('module1').options[i].disabled = false;
   document.getElementById('module2').options[i].disabled = false;
   document.getElementById('module3').options[i].disabled = false;
   document.getElementById('module5').options[i].disabled = false;
+  } */
+  
+  //go through and re-enable the previously selected option for each dd box from this one down
+  //dd4
+  document.getElementById('module1').options[prev4].disabled = false;
+  document.getElementById('module2').options[prev4].disabled = false;
+  document.getElementById('module3').options[prev4].disabled = false;
+  document.getElementById('module4').options[prev4].disabled = false;
+  document.getElementById('module5').options[prev4].disabled = false;
+  //dd5
+  document.getElementById('module1').options[prev5].disabled = false;
+  document.getElementById('module2').options[prev5].disabled = false;
+  document.getElementById('module3').options[prev5].disabled = false;
+  document.getElementById('module4').options[prev5].disabled = false;
+  document.getElementById('module5').options[prev5].disabled = false;
+  
+  //make sure "-" is selected on the below dropdowns
+  document.getElementById('module5').options[0].selected = true;
   }
-  }
+  //otherwise, user has selected another option
   else
   {
-  /*for (var i=1;i<document.getElementById('module2').length;i++)
-  {
+  //go through and re-enable the previously selected option
+  document.getElementById('module1').options[prev].disabled = false;
+  document.getElementById('module2').options[prev].disabled = false;
+  document.getElementById('module3').options[prev].disabled = false;
+  document.getElementById('module4').options[prev].disabled = false;
+  document.getElementById('module5').options[prev].disabled = false;
   
-  document.getElementById('module1').options[i].disabled = false;
-  document.getElementById('module2').options[i].disabled = false;
-  document.getElementById('module3').options[i].disabled = false;
-  document.getElementById('module5').options[i].disabled = false;
-  }*/
+  //disable the newly selected option
   document.getElementById('module1').options[x].disabled = true;
   document.getElementById('module2').options[x].disabled = true;
   document.getElementById('module3').options[x].disabled = true;
@@ -365,30 +479,58 @@ function disableOptions4(x) {
 
 <script type="text/javascript">
 function disableOptions5(x) {
-  if (x == 0){
-  for (var i=1;i<document.getElementById('module2').length;i++)
-  {
-  document.getElementById('module1').options[i].disabled = false;
-  document.getElementById('module2').options[i].disabled = false;
-  document.getElementById('module3').options[i].disabled = false;
-  document.getElementById('module4').options[i].disabled = false;
-  }
-  }
-  else
-  {
-  /*for (var i=1;i<document.getElementById('module2').length;i++)
+//variable prev is equal to the global prev5
+prev5 = window.prev5;
+//reset prev5 so it now contains the new value
+window.prev5 = x;
+  //If user has selected "-"
+  if (x === 0){
+  //next 6 lines not needed. TO BE DELETED.
+  /*  for (var i=1;i<document.getElementById('module2').length;i++)
   {
   document.getElementById('module1').options[i].disabled = false;
   document.getElementById('module2').options[i].disabled = false;
   document.getElementById('module3').options[i].disabled = false;
   document.getElementById('module4').options[i].disabled = false;
   }*/
+  //go through and re-enable the previously selected option
+  document.getElementById('module1').options[prev5].disabled = false;
+  document.getElementById('module2').options[prev5].disabled = false;
+  document.getElementById('module3').options[prev5].disabled = false;
+  document.getElementById('module4').options[prev5].disabled = false;
+  document.getElementById('module5').options[prev5].disabled = false;
+  }
+  //otherwise, user has selected another option
+  else
+  {
+  //go through and re-enable the previously selected option
+  document.getElementById('module1').options[prev].disabled = false;
+  document.getElementById('module2').options[prev].disabled = false;
+  document.getElementById('module3').options[prev].disabled = false;
+  document.getElementById('module4').options[prev].disabled = false;
+  document.getElementById('module5').options[prev].disabled = false;
   
+  //disable the newly selected option
   document.getElementById('module1').options[x].disabled = true;
   document.getElementById('module2').options[x].disabled = true;
   document.getElementById('module3').options[x].disabled = true;
   document.getElementById('module4').options[x].disabled = true;
   }
+}
+</script>
+<script type="text/javascript">
+function initialprev(){
+window.prev1 = 0;
+window.prev2 = 0;
+window.prev3 = 0;
+window.prev4 = 0;
+window.prev5 = 0;
+}
+</script>
+<script type="text/javascript">
+function Load(){
+show('module1');
+initialprev();
 }
 </script>
 </body>
