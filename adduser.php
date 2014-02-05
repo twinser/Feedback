@@ -291,8 +291,8 @@ window.prev1 = x;
   </script>
 <script type="text/javascript">
 function disableOptions2(x) {
-//variable prevn is equal to the global prevn, where n is the number of the dropdown box
-//e.g. prev2 is the previous from dd box 2
+//variable pren is equal to the global pren, where n is the number of the dropdown box
+//e.g. pre2 is the previous from dd box 2
 pre2 = window.prev2;
 pre3 = window.prev3;
 pre4 = window.prev4;
@@ -354,8 +354,8 @@ window.prev2 = x;
   
 <script type="text/javascript">
 function disableOptions3(x) {
-//variable prevn is equal to the global prevn, where n is the number of the dropdown box
-//e.g. prev3 is the previous from dd box 3
+//variable pren is equal to the global pren, where n is the number of the dropdown box
+//e.g. pre3 is the previous from dd box 3
 pre3 = window.prev3;
 pre4 = window.prev4;
 pre5 = window.prev5;
@@ -408,8 +408,8 @@ window.prev3 = x;
 
 <script type="text/javascript">
 function disableOptions4(x) {
-//variable prevn is equal to the global prevn, where n is the number of the dropdown box
-//e.g. prev4 is the previous from dd box 4
+//variable pren is equal to the global pren, where n is the number of the dropdown box
+//e.g. pre4 is the previous from dd box 4
 pre4 = window.prev4;
 pre5 = window.prev5;
 //reset prev4 so it now contains the new value
@@ -455,7 +455,7 @@ window.prev4 = x;
 
 <script type="text/javascript">
 function disableOptions5(x) {
-//variable prev5 is equal to the global prev5
+//variable pre5 is equal to the global prev5
 pre5 = window.prev5;
 //reset prev5 so it now contains the new value
 window.prev5 = x;
