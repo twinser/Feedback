@@ -57,8 +57,8 @@ Quiz created on <?php echo $row['DateAdded'] ?>
 <form name="form6" method="post" action="checkeditquiz.php">
 
 <p><b>Feedback Type:</b></p>
-<p>Single Lecture Feedback<input type="radio" name="wholemod"  value="1" onclick="lecture()" <?php if ($row['AfterLectureQuiz'] == 1) { echo checked; } ?> > <br>
-Whole Module Feedback<input type="radio" name="wholemod" value="0" onclick="module()"  <?php if ($row['AfterLectureQuiz'] == 0) { echo checked; } ?> > </p>
+<p>Single Lecture Feedback<input type="radio" name="wholemod"  value="1" onclick="lecture()" <?php if ($row['AfterLectureQuiz'] == 1) { echo checked; } ?> disabled> <br>
+Whole Module Feedback<input type="radio" name="wholemod" value="0" onclick="module()"  <?php if ($row['AfterLectureQuiz'] == 0) { echo checked; } ?> disabled> </p>
 
 <p><b>Passphrase:</b> <input name="Passphrase" type="text" id="Passphrase" <?php echo 'value="'.$row['Passphrase'].'"';?> READONLY></p>
 <p><b>Brief Description:</b> <input name="description" type="text" id="description" <?php echo 'value="'.$row['Description'].'"';?>></p>

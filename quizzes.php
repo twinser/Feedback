@@ -36,7 +36,7 @@ if (mysqli_connect_errno($con))
 
 
 if ($_COOKIE['admin_cook'] == 1){
-$sql="SELECT * FROM $tbl_name";
+$sql="SELECT * FROM $tbl_name ORDER BY ModuleID,DateAdded";
 }
 else
 {
@@ -49,27 +49,27 @@ $mods = $_COOKIE['modules_cook'];
 switch ($mods)
 {
 case "1":
-$sql="SELECT * FROM $tbl_name WHERE ModuleID='$mod1'";
+$sql="SELECT * FROM $tbl_name WHERE ModuleID='$mod1' ORDER BY ModuleID,DateAdded";
 break;
 case "2";
-$sql="SELECT * FROM $tbl_name WHERE ModuleID='$mod1' OR ModuleID='$mod2'";
+$sql="SELECT * FROM $tbl_name WHERE ModuleID='$mod1' OR ModuleID='$mod2' ORDER BY ModuleID,DateAdded";
 break;
 case "3":
-$sql="SELECT * FROM $tbl_name WHERE ModuleID='$mod1' OR ModuleID='$mod2' OR ModuleID='$mod3'";
+$sql="SELECT * FROM $tbl_name WHERE ModuleID='$mod1' OR ModuleID='$mod2' OR ModuleID='$mod3' ORDER BY ModuleID,DateAdded";
 break;
 case "4":
-$sql="SELECT * FROM $tbl_name WHERE ModuleID='$mod1' OR ModuleID='$mod2' OR ModuleID='$mod3' OR ModuleID='$mod4'";
+$sql="SELECT * FROM $tbl_name WHERE ModuleID='$mod1' OR ModuleID='$mod2' OR ModuleID='$mod3' OR ModuleID='$mod4' ORDER BY ModuleID,DateAdded";
 break;
 case "5":
-$sql="SELECT * FROM $tbl_name WHERE ModuleID='$mod1' OR ModuleID='$mod2' OR ModuleID='$mod3' OR ModuleID='$mod4' OR ModuleID='$mod5'";
+$sql="SELECT * FROM $tbl_name WHERE ModuleID='$mod1' OR ModuleID='$mod2' OR ModuleID='$mod3' OR ModuleID='$mod4' OR ModuleID='$mod5' ORDER BY ModuleID,DateAdded";
 break;
 default:
-$sql="SELECT * FROM $tbl_name";
+$sql="SELECT * FROM $tbl_name ORDER BY ModuleID,DateAdded";
 }
 }
 $result=mysqli_query($con,$sql);
  
-  echo "<table id='quiz-table'>";
+  echo "<table class ='sortable' id='quiz-table'>";
   echo "<tr><th>Quiz ID</th><th>Module Code</th><th>Passphrase</th><th>Description</th><th>Lecture Quiz</th><th>Date Added</th><th>Expiry Date</th><th>Lecture Topic</th><th>Lecture Date</th><th>Coursework</th><th>View Results</th><th>Edit</th></tr>";
  
   while($row = mysqli_fetch_array($result)){
@@ -123,6 +123,6 @@ echo "</table>";
 <body>
 <p><a href ="admin_login_success.php">Back</a></p>
 <p><a href ="Logout.php">Log out</a></p>
-  
+<script src="sorttable.js"></script>
 </body>
 </html>
