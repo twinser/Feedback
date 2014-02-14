@@ -485,16 +485,20 @@ ob_end_flush();
 
   <body>
     <!--Div that will hold the pie chart-->
+	<div style="float: left">
     <div id="q1"></div>
-    <div id="q2"></div>
     <div id="q3"></div>
-    <div id="q4"></div>
     <div id="q5"></div>
+	<div id="q7b"></div>
+	<div id="q9b"></div>
+	<div id="q10"></div>
+	</div>
+	<div style="float: left">
+	<div id="q2"></div>
+	<div id="q4"></div>
     <div id="q6"></div>
-    <div id="q7b"></div>
     <div id="q8b"></div>
-    <div id="q9b"></div>
     <div id="q9c"></div>
-    <div id="q10"></div>
+    </div>
   </body>
 </html>
