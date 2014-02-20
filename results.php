@@ -293,6 +293,16 @@ ob_end_flush();
 
 <html>
   <head>
+  <script type="text/javascript" src="rgbcolor.js"></script> 
+  <script type="text/javascript" src="canvg.js"></script> 
+  <script type="text/javascript" src="grChartImg.js"></script>   
+  <script type="text/javascript" src="jquery/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="jsPDF/jspdf.js"></script>
+  <script type="text/javascript" src="jsPDF/jspdf.plugin.standard_fonts_metrics.js"></script> 
+  <script type="text/javascript" src="jsPDF/jspdf.plugin.split_text_to_size.js"></script>               
+  <script type="text/javascript" src="jsPDF/jspdf.plugin.from_html.js"></script>
+  <script type="text/javascript" src="jsPDF/jspdf.plugin.addimage.js"></script>
+  <script type="text/javascript" src="js/FileSaver.js"></script>
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
@@ -484,7 +494,12 @@ ob_end_flush();
   </head>
 
   <body>
-    <!--Div that will hold the pie chart-->
+   
+	<a href="javascript:grChartImg.ShowImage('q1', true)">Click me</a>
+	<a href="javascript:getImageData('q1')">No, click me</a>
+	<a href="javascript:demo()" class="button">Run Code</a>
+	<div id="results">
+	<!--Divs that will hold the pie chart-->
 	<div style="float: left">
     <div id="q1"></div>
     <div id="q3"></div>
@@ -500,5 +515,33 @@ ob_end_flush();
     <div id="q8b"></div>
     <div id="q9c"></div>
     </div>
+	</div>
+	<script type="text/javascript">
+	function getImageData(div_name){
+	//Set the exported Image Format.Supported jpeg and png type.      
+  //To Change Image Format, call before any procedure the SetImageFormat method.
+  grChartImg.SetImageFormat = {type:'jpeg'};
+  
+  var imageData=grChartImg.GetImageData(div_name);
+  
+  alert(imageData);
+
+  }
+  </script>
+  <script type="text/javascript">
+  
+  function demo() {
+
+  grChartImg.SetImageFormat = {type:'jpeg'};
+  
+  var imgData=grChartImg.GetImageData('q1');
+
+  var doc = new jsPDF();
+
+  doc.addImage(imgData, 'JPEG', 15, 40, 180, 180);
+
+  doc.output('save', 'test.pdf'); 
+    }
+</script>
   </body>
 </html>
