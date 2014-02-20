@@ -44,6 +44,7 @@ var grChartImg = {
                     //load a svg snippet code in the canvas element
                     canvg(c, this.GetChartVectorCode(strChartID));
                     //set canvas data as url
+					//I edited this to make it image/jpeg, not image/png
                     var imgData = c.toDataURL("image/jpeg");
                     c = null;
                     break;

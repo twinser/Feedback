@@ -532,13 +532,34 @@ ob_end_flush();
   
   function demo() {
 
-  grChartImg.SetImageFormat = {type:'jpeg'};
+  //grChartImg.SetImageFormat = {type:'jpeg'};
   
-  var imgData=grChartImg.GetImageData('q1');
-
+  var imgDataQ1=grChartImg.GetImageData('q1');
+  var imgDataQ2=grChartImg.GetImageData('q2');
+  var imgDataQ3=grChartImg.GetImageData('q3');
+  var imgDataQ4=grChartImg.GetImageData('q4');
+  var imgDataQ5=grChartImg.GetImageData('q5');
+  var imgDataQ6=grChartImg.GetImageData('q6');
+  var imgDataQ7b=grChartImg.GetImageData('q7b');
+  var imgDataQ8b=grChartImg.GetImageData('q8b');
+  var imgDataQ9b=grChartImg.GetImageData('q9b');
+  var imgDataQ9c=grChartImg.GetImageData('q9c');
+  var imgDataQ10=grChartImg.GetImageData('q10');
   var doc = new jsPDF();
 
-  doc.addImage(imgData, 'JPEG', 15, 40, 180, 180);
+  doc.addImage(imgDataQ1, 'JPEG', 5, 5, 100, 75);
+  doc.addImage(imgDataQ2, 'JPEG', 110, 5, 100, 75);
+  doc.addImage(imgDataQ3, 'JPEG', 5, 85, 100, 75);
+  doc.addImage(imgDataQ4, 'JPEG', 110, 85, 100, 75);
+  doc.addImage(imgDataQ5, 'JPEG', 5, 165, 100, 75);
+  doc.addImage(imgDataQ6, 'JPEG', 110, 165, 100, 75);
+  doc.addPage();
+  doc.addImage(imgDataQ7b, 'JPEG', 5, 5, 100, 75);
+  doc.addImage(imgDataQ8b, 'JPEG', 110, 5, 100, 75);
+  doc.addImage(imgDataQ9b, 'JPEG', 5, 85, 100, 75);
+  doc.addImage(imgDataQ9c, 'JPEG', 110, 85, 100, 75);
+  doc.addImage(imgDataQ10, 'JPEG', 5, 165, 100, 75);
+
 
   doc.output('save', 'test.pdf'); 
     }
