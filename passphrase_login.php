@@ -4,48 +4,33 @@ header("location:login_success.php");
 ?>
 <html>
 <head>
-<style type="text/css">
-<!--
-@import url("style.css");
--->
-</style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/signin.css" rel="stylesheet">
 
 </head>
 <body onload="Load()">
-<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1" />
-<table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
-<tr>
-<form name="form1" method="post" action="checklogin.php">
-<td>
-<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
-<tr>
-<td colspan="3"><strong>Login </strong></td>
-</tr>
-<tr>
-<td width="78">Passphrase</td>
-<td width="6">:</td>
-<td width="294"><input name="passphrase" type="text" id="passphrase"></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td><input type="submit" name="Submit" value="Login"></td>
-</tr>
-</table>
-</td>
-</form>
-</tr>
-</table><br>
+<div class="container">
+
+      <form class="form-signin" role="form" method="post" action="checklogin.php">
+        <h2 class="form-signin-heading">Enter passphrase</h2>
+        <input type="text" class="form-control" placeholder="Passphrase" id="passphrase" name="passphrase" required autofocus>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="Submit" value="Login">Sign in</button>
+		<button class="btn btn-sm btn-secondary btn-block" type="button" name="admin" value="admin" onclick="window.location.href='admin_login.php'">Lecturer/Admin Login</button>
+      </form>
+
+    </div>
+
 <p id="expired" align="center" style="display: none;">
 <font color="red">That quiz has expired. Please contact your lecturer for more details.</font>
 </p>
 <p id="wrongp" align="center" style="display: none;">
 <font color="red">That passphrase is incorrect. Please check your spelling.</font>
 </p>
-<br>
-<p align="center">
-<a href = "admin_login.php">Lecturer/Admin Login</a>
-</p>
+
 <script type="text/javascript">
 function del_cookie(name) {
 document.cookie = name +

@@ -4,50 +4,31 @@ header("location:login_success.php");
 ?>
 <html>
 <head>
-<style type="text/css">
-<!--
-@import url("style.css");
--->
-</style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/signin.css" rel="stylesheet">
 </head>
 <body onload="Load()">
-<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1" />
-<table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
-<tr>
-<form name="form1" method="post" action="checklogin_admin.php">
-<td>
-<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
-<tr>
-<td colspan="3"><strong>Login </strong></td>
-</tr>
-<tr>
-<td width="78">Username</td>
-<td width="6">:</td>
-<td width="294"><input name="username" type="text" id="username" value="<?php if (empty($_COOKIE['entereduname_cook'])){
-echo "";} else { echo $_COOKIE['entereduname_cook']; } ?>"></td>
-</tr>
-<tr>
-<td>Password</td>
-<td>:</td>
-<td><input name="password" type="password" id="password"></td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td><input type="submit" name="Submit" value="Login"></td>
-</tr>
-</table>
-</td>
-</form>
-</tr>
-</table><br>
+<div class="container">
+
+      <form class="form-signin" role="form" method="post" action="checklogin_admin.php">
+        <h2 class="form-signin-heading">Login</h2>
+        <input type="text" class="form-control" placeholder="Username" id="username" name="username" value="<?php if (empty($_COOKIE['entereduname_cook'])){
+echo "";} else { echo $_COOKIE['entereduname_cook']; } ?>" required autofocus>
+		<input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" name="Submit" value="Login">Sign in</button>
+		<button class="btn btn-sm btn-secondary btn-block" type="button" name="admin" value="admin" onclick="window.location.href='passphrase_login.php'">Feedback login</button>
+      </form>
+
+    </div>
+
 <p id="wrongu" align="center" style="display: none;">
 <font color="red">Either the username or password is incorrect. Please check your spelling.</font>
 </p>
 <br>
-<p align="center">
-<a href = "passphrase_login.php">Feedback Login (with passphrase)</a>
-</p>
 
 
 <script type="text/javascript">
