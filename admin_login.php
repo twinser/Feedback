@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <?php
 if (isset($_COOKIE['passphrase_cook']))
 header("location:login_success.php");
 ?>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +21,7 @@ echo "";} else { echo $_COOKIE['entereduname_cook']; } ?>" required autofocus>
 		<input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
         <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="Submit" value="Login">Sign in</button>
-		<button class="btn btn-sm btn-secondary btn-block" type="button" name="admin" value="admin" onclick="window.location.href='passphrase_login.php'">Feedback login</button>
+		<a class="btn btn-sm btn-info btn-block" href="passphrase_login.php" role="button" name="feedback" value="feedback">Feedback Login</a>
       </form>
 
     </div>

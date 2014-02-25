@@ -1,8 +1,9 @@
+<!DOCTYPE html>
 <?php
 if (isset($_COOKIE['passphrase_cook']))
 header("location:login_success.php");
 ?>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +20,7 @@ header("location:login_success.php");
         <input type="text" class="form-control" placeholder="Passphrase" id="passphrase" name="passphrase" required autofocus>
         <br>
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="Submit" value="Login">Sign in</button>
-		<button class="btn btn-sm btn-secondary btn-block" type="button" name="admin" value="admin" onclick="window.location.href='admin_login.php'">Lecturer/Admin Login</button>
+		<a class="btn btn-sm btn-info btn-block" href="admin_login.php" role="button" name="admin" value="admin">Lecturer/Admin Login</a>
       </form>
 
     </div>

@@ -10,33 +10,33 @@ else {
 header("location:passphrase_login.php");
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
-
-
-<html>
 <head>
-<style type="text/css">
-<!--
-@import url("style.css");
--->
-</style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
 
 </head>
 <body onload="Load()">
 
-
-<h1>
+<div class="form-space">
+<h1 class="text-success">Module Quiz</h1>
+<h1 class="text-primary">
 <?php
 echo $_COOKIE['module_cook'];
 ?>
- Module Quiz
 </h1>
 
 <p id="answerall" style="display: none;">
 <font color="red">  You must answer all the questions! </font></p>
 <br>
+<form role="form" name="formM" method="post" action="submitm.php">
 
-<form name="formM" method="post" action="submitm.php">
+
 <p>1.) How interesting did you find the module?<br>
 <input type="radio" name="q1" <?php if ($_COOKIE['1_cook']==1) echo "checked";?> value="1"> Boring<br>
 <input type="radio" name="q1" <?php if ($_COOKIE['1_cook']==2) echo "checked";?> value="2"> Not very interesting<br>
@@ -117,9 +117,9 @@ echo $_COOKIE['module_cook'];
 <input type="radio" name="q10" <?php if ($_COOKIE['10_cook']==4) echo "checked";?> value="4"> Challenging<br>
 <input type="radio" name="q10" <?php if ($_COOKIE['10_cook']==5) echo "checked";?> value="5"> Too difficult</p>
 
-<p><input type="submit" name="SubmitModuleQuiz" value="Submit"></p><br>
-<p> <a href ="selectfbtypemod.php"> Go back to the selection screen</a>  &nbsp; &nbsp; &nbsp;  <a href = "Logout.php">Cancel feedback</a> </p>
-
+<p><button type="submit" class="btn btn-default" name="SubmitModuleQuiz" value="Submit">Submit</button></p></form><br>
+<p> <a class="btn btn-warning" href="selectfbtypemod.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Cancel</a> </p>
+</div>
 <script type="text/javascript">
 
   function show(id){ 

@@ -1,12 +1,15 @@
-<html>
-<head>
-<style type="text/css">
-<!--
-//@import url("style.css");
--->
-</style>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> <meta charset="utf-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<link href="css/bootstrap.min.css" rel="stylesheet"> 
+<link href="css/main.css" rel="stylesheet"> 
+</head> 
 
-</head>
+<body class="users-table"> 
+<h1 class="text-primary">Users</h1>
+<div class="table-responsive"> 
+<table class="table table-hover table-condensed table-bordered" id='user-table'>
 
 <?php
 //http://www.sudobash.net/web-dev-populate-phphtml-table-from-mysql-database/
@@ -31,9 +34,8 @@ if (mysqli_connect_errno($con))
 
 $sql="SELECT UserID, Admin, Module1, Module2, Module3, Module4, Module5 FROM $tbl_name WHERE NOT UserID='$loggedin'";
 $result=mysqli_query($con,$sql);
- 
-  echo "<table id='user-table'>";
-  echo "<tr><th>Username</th><th>Admin</th><th>Module1</th><th>Module2</th><th>Module3</th><th>Module4</th><th>Module5</th><th>Edit</th><th>Delete</th></tr>";
+
+  echo "<thead><tr><th>Username</th><th>Admin</th><th>Module1</th><th>Module2</th><th>Module3</th><th>Module4</th><th>Module5</th><th> </th></tr></thead><tbody>";
  
   while($row = mysqli_fetch_array($result)){
  
@@ -46,14 +48,16 @@ $result=mysqli_query($con,$sql);
   $mod5 = $row['Module5'];
  
 
-echo '<tr><td>'.$userid.'</td><td>'.$admin.'</td><td>'.$mod1.'</td><td>'.$mod2.'</td><td>'.$mod3.'</td><td>'.$mod4.'</td><td>'.$mod5.'</td><td><a href="edituser.php?user='. $userid . '"> Edit </a></td><td><a href="deleteuser.php?user='. $userid . '"> Delete </a></td> </tr>';
+echo '<tr><td>'.$userid.'</td><td>'.$admin.'</td><td>'.$mod1.'</td><td>'.$mod2.'</td><td>'.$mod3.'</td><td>'.$mod4.'</td><td>'.$mod5.'</td><td><a class="btn btn-info btn-xs" href="edituser.php?user='. $userid . '" role="button">Edit</a> <a class="btn btn-danger btn-xs" href="deleteuser.php?user='. $userid . '" role="button">Delete</a></td> </tr>';
  
 } // End our while loop
-echo "</table>";
+
 ?>
-<body>
-<p><a href ="admin_login_success.php">Back</a></p>
-<p><a href ="Logout.php">Log out</a></p>
+</tbody>
+</table>
+</div>
+<p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
+
   
 </body>
 </html>

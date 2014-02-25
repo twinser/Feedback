@@ -290,9 +290,16 @@ else{
 }
 ob_end_flush();
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<html>
-  <head>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+
   <script type="text/javascript" src="rgbcolor.js"></script> 
   <script type="text/javascript" src="canvg.js"></script> 
   <script type="text/javascript" src="grChartImg.js"></script>   
@@ -422,46 +429,57 @@ ob_end_flush();
         var options = {'title':'How interesting did you find the module?',
                        'width':600,
                        'height':450,
+					   //'backgroundColor': 'transparent', 
                        legend : {position : 'none'}};
         var options2 = {'title':'Did you find the module easy to follow?',
                        'width':600,
                        'height':450,
+					   //'backgroundColor': 'transparent', 
                        pieSliceText: 'none'};
         var options3 = {'title':'How difficult did you find the module?',
                        'width':600,
                        'height':450,
+					   //'backgroundColor': 'transparent', 
                        legend : {position : 'none'}};
         var options4 = {'title':'How well did the lecturer interact with the group?',
                        'width':600,
                        'height':450,
+					   //'backgroundColor': 'transparent', 
                        legend : {position : 'none'}};
         var options5 = {'title':'How was the pace of the module?',
                        'width':600,
                        'height':450,
+					   //'backgroundColor': 'transparent', 
                        legend : {position : 'none'}};
         var options6 = {'title':'Did you learn something?',
                        'width':600,
                        'height':450,
+					   //'backgroundColor': 'transparent', 
                        pieSliceText: 'none'};
         var options7b = {'title':'Would you describe the lecture notes as useful?',
                        'width':600,
                        'height':450,
+					   //'backgroundColor': 'transparent', 
                        pieSliceText: 'none'};
         var options8b = {'title':'Would you describe the visual aids as useful?',
                        'width':600,
                        'height':450,
+					   //'backgroundColor': 'transparent', 
                        pieSliceText: 'none'};
         var options9b = {'title':'How easy was the practical work?',
                        'width':600,
                        'height':450,
+					   //'backgroundColor': 'transparent', 
                        legend : {position : 'none'}};
         var options9c = {'title':'How was the support in the practical sessions?',
                        'width':600,
                        'height':450,
+					   //'backgroundColor': 'transparent', 
                        legend : {position : 'none'}};
         <?php if ($lecture != 1) { echo "var options10 = {'title':'How did you find the coursework?',
                        'width':600,
                        'height':450,
+					   //'backgroundColor': 'transparent', 
                        legend : {position : 'none'}};";} ?>
 
 
@@ -500,22 +518,55 @@ ob_end_flush();
 	<a href="javascript:demo()" class="button">Run Code</a>
 	<div id="results">
 	<!--Divs that will hold the pie chart-->
-	<div style="float: left">
-    <div id="q1"></div>
-    <div id="q3"></div>
-    <div id="q5"></div>
+	<!--div style="float: left"-->
+	<div class="row">
+	<div class="col-md-6">
+	<div id="q1"></div>
+	</div>
+	<div class="col-md-6">
+	<div id="q2"></div>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col-md-6">
+	<div id="q3"></div>
+	</div>
+	<div class="col-md-6">
+	<div id="q4"></div>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col-md-6">
+	<div id="q5"></div>
+	</div>
+	<div class="col-md-6">
+	<div id="q6"></div>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col-md-6">
 	<div id="q7b"></div>
+	</div>
+	<div class="col-md-6">
+	<div id="q8b"></div>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col-md-6">
 	<div id="q9b"></div>
+	</div>
+	<div class="col-md-6">
+	<div id="q9c"></div>
+	</div>
+	</div>
+	<div class="row">
+	<div class="col-md-6">
 	<div id="q10"></div>
 	</div>
-	<div style="float: left">
-	<div id="q2"></div>
-	<div id="q4"></div>
-    <div id="q6"></div>
-    <div id="q8b"></div>
-    <div id="q9c"></div>
-    </div>
 	</div>
+    
+	</div>
+	
 	<script type="text/javascript">
 	function getImageData(div_name){
 	//Set the exported Image Format.Supported jpeg and png type.      
