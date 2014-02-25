@@ -1,3 +1,8 @@
+<?php
+if ($_COOKIE['admin_cook'] != 1){
+header("location:login_success.php");
+}
+?>
 <!DOCTYPE html> 
 <html lang="en"> 
 <head> <meta charset="utf-8"> 
@@ -9,7 +14,7 @@
 <body class="users-table"> 
 <h1 class="text-primary">Users</h1>
 <div class="table-responsive"> 
-<table class="table table-hover table-condensed table-bordered" id='user-table'>
+<table class="table table-hover table-condensed table-bordered sortable" id='user-table'>
 
 <?php
 //http://www.sudobash.net/web-dev-populate-phphtml-table-from-mysql-database/
@@ -57,7 +62,7 @@ echo '<tr><td>'.$userid.'</td><td>'.$admin.'</td><td>'.$mod1.'</td><td>'.$mod2.'
 </table>
 </div>
 <p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
-
+<script src="sorttable.js"></script>
   
 </body>
 </html>

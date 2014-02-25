@@ -4,16 +4,17 @@ if(empty($_COOKIE['user_cook']))
 header("location:admin_login_success.php");
 }
 ?>
-<html>
-<head>
-<style type="text/css">
-<!--
-@import url("style.css");
--->
-</style>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> <meta charset="utf-8"> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<link href="css/bootstrap.min.css" rel="stylesheet"> 
+<link href="css/main.css" rel="stylesheet"> 
 
 </head>
-
+<body class="users-table">
+<div class="table-responsive"> 
+<table class ="table table-hover table-condensed table-bordered sortable" id="quiz-table">
 <?php
 
 //http://www.sudobash.net/web-dev-populate-phphtml-table-from-mysql-database/
@@ -69,8 +70,8 @@ $sql="SELECT * FROM $tbl_name ORDER BY ModuleID,DateAdded";
 }
 $result=mysqli_query($con,$sql);
  
-  echo "<table class ='sortable' id='quiz-table'>";
-  echo "<tr><th>Quiz ID</th><th>Module Code</th><th>Passphrase</th><th>Description</th><th>Lecture Quiz</th><th>Date Added</th><th>Expiry Date</th><th>Lecture Topic</th><th>Lecture Date</th><th>Coursework</th><th>View Results</th><th>Edit</th></tr>";
+
+  echo "<thead><tr><th>Quiz ID</th><th>Module Code</th><th>Passphrase</th><th>Description</th><th>Lecture Quiz</th><th>Date Added</th><th>Expiry Date</th><th>Lecture Topic</th><th>Lecture Date</th><th>Coursework</th><th> </th></tr></thead><tbody>";
  
   while($row = mysqli_fetch_array($result)){
  
@@ -114,15 +115,17 @@ $result=mysqli_query($con,$sql);
  
  
 
-echo '<tr><td>'.$quizid.'</td><td>'.$modid.'</td><td>'.$passphrase.'</td><td>'.$desc.'</td><td>'.$lecturequiz.'</td><td>'.$dateadded.'</td><td>'.$expiry.'</td><td>'.$lecturetopic.'</td><td>'.$lecturedate.'</td><td>'.$coursework.'</td><td><a href="results.php?quiz='. $quizid . '"> View Results </a></td><td><a href="editquiz.php?quiz='. $quizid . '"> Edit </a></td></tr>';
+echo '<tr><td>'.$quizid.'</td><td>'.$modid.'</td><td>'.$passphrase.'</td><td>'.$desc.'</td><td>'.$lecturequiz.'</td><td>'.$dateadded.'</td><td>'.$expiry.'</td><td>'.$lecturetopic.'</td><td>'.$lecturedate.'</td><td>'.$coursework.'</td><td><a class="btn btn-info btn-xs" href="results.php?quiz='. $quizid . '" role="button">View Results</a> <a class="btn btn-warning btn-xs" href="editquiz.php?quiz='. $quizid . '" role="button">Edit</a></td></tr>';
  
 } // End our while loop
-echo "</table>";
+
 
 ?>
-<body>
-<p><a href ="admin_login_success.php">Back</a></p>
-<p><a href ="Logout.php">Log out</a></p>
+</tbody>
+</table>
+</div>
+<p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
+
 <script src="sorttable.js"></script>
 </body>
 </html>

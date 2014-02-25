@@ -1,10 +1,10 @@
 <?php
-if(empty($_COOKIE['user_cook']))
-{
-header("location:admin_login.php");
-}
 
+if ($_COOKIE['admin_cook'] != 1){
+header("location:login_success.php");
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
