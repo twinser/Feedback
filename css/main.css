@@ -10,3 +10,7 @@ background-color: #fff;
 .form-space {
 margin-left: 15px;
 }
+
+.comment-table{
+max-width: auto;
+}

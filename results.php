@@ -15,23 +15,21 @@ $loggedin=$_COOKIE['user_cook'];
 // Connect to server and select databse.
 // Create connection
 $con=mysqli_connect($host,$username,$password,$db_name);
-$sql="SELECT * FROM Quizzes WHERE QuizID=$quizid";
-$result=mysqli_query($con,$sql);
-$row = mysqli_fetch_array($result);
-$lecture = $row['AfterLectureQuiz'];
-
-ob_end_flush();
-ob_start();
-$host="localhost"; // Host name 
-$username="nk011269_admin"; // Mysql username 
-$password="Tomw1991"; // Mysql password 
-$db_name="nk011269_Feedback"; // Database name 
 
 // Check connection
 if (mysqli_connect_errno($con))
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
+$sql="SELECT * FROM Quizzes WHERE QuizID=$quizid";
+$result=mysqli_query($con,$sql);
+$row = mysqli_fetch_array($result);
+$lecture = $row['AfterLectureQuiz'];
+$module = $row['ModuleID'];
+ob_end_flush();
+
+ob_start();
+
 
 $sql="SELECT * FROM QuizResponses WHERE QuizID=$quizid";
 $result=mysqli_query($con,$sql);
@@ -512,61 +510,81 @@ ob_end_flush();
   </head>
 
   <body>
-   
-	<a href="javascript:grChartImg.ShowImage('q1', true)">Click me</a>
-	<a href="javascript:getImageData('q1')">No, click me</a>
-	<a href="javascript:demo()" class="button">Run Code</a>
+   <h1>
+   <?php echo $module . " " ?>Results
+   </h1>
+	<!--
+		<a href="javascript:grChartImg.ShowImage('q1', true)">Click me</a>
+		<a href="javascript:getImageData('q1')">No, click me</a>
+		<a href="javascript:demo()" class="button">Run Code</a>
+																			-->
+	<a class="btn btn-success" href="javascript:pdf()" role="button">Download all as PDF</a> <a class="btn btn-info" href="detailed_results.php?quiz=<?php echo $_GET['quiz'] ?>" role="button">View detailed feedback</a>
+	<a class="btn btn-warning" href="quizzes.php" role="button">Go back</a> <a class="btn btn-danger" href="Logout.php" role="button">Log out</a>
 	<div id="results">
 	<!--Divs that will hold the pie chart-->
 	<!--div style="float: left"-->
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q1"></div>
+	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q1', true)" role="button">Save image</a>
 	</div>
 	<div class="col-md-6">
 	<div id="q2"></div>
+	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q2', true)" role="button">Save image</a>
 	</div>
 	</div>
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q3"></div>
+	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q3', true)" role="button">Save image</a>
 	</div>
 	<div class="col-md-6">
 	<div id="q4"></div>
+	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q4', true)" role="button">Save image</a>
 	</div>
 	</div>
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q5"></div>
+	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q5', true)" role="button">Save image</a>
 	</div>
 	<div class="col-md-6">
 	<div id="q6"></div>
+	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q6', true)" role="button">Save image</a>
 	</div>
 	</div>
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q7b"></div>
+	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q7', true)" role="button">Save image</a>
 	</div>
 	<div class="col-md-6">
 	<div id="q8b"></div>
+	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q8b', true)" role="button">Save image</a>
 	</div>
 	</div>
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q9b"></div>
+	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q9b', true)" role="button">Save image</a>
 	</div>
 	<div class="col-md-6">
 	<div id="q9c"></div>
+	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q9c', true)" role="button">Save image</a>
 	</div>
 	</div>
+	
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q10"></div>
+	<?php if ($lecture != 1) { echo '<a class="btn btn-info" href="javascript:grChartImg.ShowImage(\'q10\', true)" role="button">Save image</a>' ;} ?>
 	</div>
 	</div>
     
 	</div>
-	
+	<br>
+	<br>
+	<p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 	<script type="text/javascript">
 	function getImageData(div_name){
 	//Set the exported Image Format.Supported jpeg and png type.      
@@ -581,7 +599,7 @@ ob_end_flush();
   </script>
   <script type="text/javascript">
   
-  function demo() {
+  function pdf() {
 
   //grChartImg.SetImageFormat = {type:'jpeg'};
   
@@ -595,7 +613,7 @@ ob_end_flush();
   var imgDataQ8b=grChartImg.GetImageData('q8b');
   var imgDataQ9b=grChartImg.GetImageData('q9b');
   var imgDataQ9c=grChartImg.GetImageData('q9c');
-  var imgDataQ10=grChartImg.GetImageData('q10');
+  <?php if ($lecture != 1) { echo "var imgDataQ10=grChartImg.GetImageData('q10');" ;} ?>
   var doc = new jsPDF();
 
   doc.addImage(imgDataQ1, 'JPEG', 5, 5, 100, 75);
@@ -609,10 +627,11 @@ ob_end_flush();
   doc.addImage(imgDataQ8b, 'JPEG', 110, 5, 100, 75);
   doc.addImage(imgDataQ9b, 'JPEG', 5, 85, 100, 75);
   doc.addImage(imgDataQ9c, 'JPEG', 110, 85, 100, 75);
-  doc.addImage(imgDataQ10, 'JPEG', 5, 165, 100, 75);
+  <?php if ($lecture != 1) { echo "doc.addImage(imgDataQ10, 'JPEG', 5, 165, 100, 75);" ;} ?>
+  
 
 
-  doc.output('save', 'test.pdf'); 
+  doc.output('save', 'feedback_results.pdf'); 
     }
 </script>
   </body>
