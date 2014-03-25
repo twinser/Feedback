@@ -26,6 +26,7 @@ $result=mysqli_query($con,$sql);
 $row = mysqli_fetch_array($result);
 $lecture = $row['AfterLectureQuiz'];
 $module = $row['ModuleID'];
+$passphrase = $row['Passphrase'];
 ob_end_flush();
 
 ob_start();
@@ -311,7 +312,7 @@ ob_end_flush();
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-
+var csv, csv2, csv3, csv4, csv5, csv6, csv7b, csv8b, csv9b, csv9c, csv10;
       // Load the Visualization API and the piechart package.
       google.load('visualization', '1.0', {'packages':['corechart']});
 
@@ -334,6 +335,8 @@ ob_end_flush();
           ['Very interesting', <?php echo $q1ans[3] ?>],
           ['Extremely interesting', <?php echo $q1ans[4] ?>]
         ]);
+	
+    
  	var data2 = new google.visualization.DataTable();
         data2.addColumn('string', 'Answer');
         data2.addColumn('number', 'Count');
@@ -341,6 +344,7 @@ ob_end_flush();
           ['Yes', <?php echo $q2ans[0] ?>],
           ['No', <?php echo $q2ans[1] ?>],
                   ]);
+	
         var data3 = new google.visualization.DataTable();
         data3.addColumn('string', 'Answer');
         data3.addColumn('number', 'Count');
@@ -351,6 +355,8 @@ ob_end_flush();
           ['Challenging', <?php echo $q3ans[3] ?>],
           ['Too difficult', <?php echo $q3ans[4] ?>]
         ]);
+		
+		
         var data4 = new google.visualization.DataTable();
         data4.addColumn('string', 'Answer');
         data4.addColumn('number', 'Count');
@@ -504,80 +510,94 @@ ob_end_flush();
         chart9c.draw(data9c, options9c);
         <?php if ($lecture != 1) { echo "var chart10 = new google.visualization.BarChart(document.getElementById('q10'));
         chart10.draw(data10, options10);" ;} ?>
+		
+	csv = google.visualization.dataTableToCsv(data);
+	csv2 = google.visualization.dataTableToCsv(data2);
+	csv3 = google.visualization.dataTableToCsv(data3);
+	csv4 = google.visualization.dataTableToCsv(data4);
+	csv5 = google.visualization.dataTableToCsv(data5);
+	csv6 = google.visualization.dataTableToCsv(data6);
+	csv7b = google.visualization.dataTableToCsv(data7b);
+	csv8b = google.visualization.dataTableToCsv(data8b);
+	csv9b = google.visualization.dataTableToCsv(data9b);
+	csv9c = google.visualization.dataTableToCsv(data9c);
+	<?php if ($lecture != 1) { echo "csv10 = google.visualization.dataTableToCsv(data10);" ;} ?>
+   
       }
-      
+	  
+	
     </script>
   </head>
 
   <body>
    <h1>
-   <?php echo $module . " " ?>Results
+   <?php echo $module . " " ?>Results - Passhprase: "<?php echo $passphrase ?>"
    </h1>
 	<!--
 		<a href="javascript:grChartImg.ShowImage('q1', true)">Click me</a>
 		<a href="javascript:getImageData('q1')">No, click me</a>
 		<a href="javascript:demo()" class="button">Run Code</a>
 																			-->
-	<a class="btn btn-success" href="javascript:pdf()" role="button">Download all as PDF</a> <a class="btn btn-info" href="detailed_results.php?quiz=<?php echo $_GET['quiz'] ?>" role="button">View detailed feedback</a>
-	<a class="btn btn-warning" href="quizzes.php" role="button">Go back</a> <a class="btn btn-danger" href="Logout.php" role="button">Log out</a>
+	<p><a class="btn btn-primary" href="javascript:pdf()" role="button">Download all as PDF</a> <a class="btn btn-info" href="detailed_results.php?quiz=<?php echo $_GET['quiz'] ?>" role="button">View detailed feedback</a>
+	<a class="btn btn-warning" href="quizzes.php" role="button">Go back</a> <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 	<div id="results">
 	<!--Divs that will hold the pie chart-->
 	<!--div style="float: left"-->
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q1"></div>
-	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q1', true)" role="button">Save image</a>
+	<a class="btn btn-info"href="javascript:getImageData(1)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(1)" role="button">Download as CSV</a>
 	</div>
 	<div class="col-md-6">
 	<div id="q2"></div>
-	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q2', true)" role="button">Save image</a>
+	<a class="btn btn-info"href="javascript:getImageData(2)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(2)" role="button">Download as CSV</a>
 	</div>
 	</div>
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q3"></div>
-	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q3', true)" role="button">Save image</a>
+	<a class="btn btn-info"href="javascript:getImageData(3)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(3)" role="button">Download as CSV</a>
 	</div>
 	<div class="col-md-6">
 	<div id="q4"></div>
-	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q4', true)" role="button">Save image</a>
+	<a class="btn btn-info"href="javascript:getImageData(4)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(4)" role="button">Download as CSV</a>
 	</div>
 	</div>
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q5"></div>
-	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q5', true)" role="button">Save image</a>
+	<a class="btn btn-info"href="javascript:getImageData(5)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(5)" role="button">Download as CSV</a>
 	</div>
 	<div class="col-md-6">
 	<div id="q6"></div>
-	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q6', true)" role="button">Save image</a>
+	<a class="btn btn-info"href="javascript:getImageData(6)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(6)" role="button">Download as CSV</a>
 	</div>
 	</div>
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q7b"></div>
-	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q7', true)" role="button">Save image</a>
+	<a class="btn btn-info"href="javascript:getImageData(7)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(7)" role="button">Download as CSV</a>
 	</div>
 	<div class="col-md-6">
 	<div id="q8b"></div>
-	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q8b', true)" role="button">Save image</a>
+	<a class="btn btn-info"href="javascript:getImageData(8)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(8)" role="button">Download as CSV</a>
 	</div>
 	</div>
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q9b"></div>
-	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q9b', true)" role="button">Save image</a>
+	<a class="btn btn-info"href="javascript:getImageData(9)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(9)" role="button">Download as CSV</a>
 	</div>
 	<div class="col-md-6">
 	<div id="q9c"></div>
-	<a class="btn btn-info"href="javascript:grChartImg.ShowImage('q9c', true)" role="button">Save image</a>
+	<a class="btn btn-info"href="javascript:getImageData(9.5)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(9.5)" role="button">Download as CSV</a>
 	</div>
 	</div>
 	
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q10"></div>
-	<?php if ($lecture != 1) { echo '<a class="btn btn-info" href="javascript:grChartImg.ShowImage(\'q10\', true)" role="button">Save image</a>' ;} ?>
+	<?php if ($lecture != 1) { echo '<a class="btn btn-info"href="javascript:getImageData(10)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(10)" role="button">Download as CSV</a>' ;} ?>
 	</div>
 	</div>
     
@@ -586,17 +606,109 @@ ob_end_flush();
 	<br>
 	<p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 	<script type="text/javascript">
-	function getImageData(div_name){
+	function getImageData(number){
+	var div_name
+	var filename
+	switch (number)
+	{
+	case 1:
+	div_name = 'q1';
+	filename = 'howinteresting.jpg';
+	break;
+	case 2:
+	div_name = 'q2';
+	filename = 'easytofollow.jpg';
+	break;
+	case 3:
+	div_name = 'q3';
+	filename = 'howdifficult.jpg';
+	break;
+	case 4:
+	div_name = 'q4';
+	filename = 'lecturerinteraction.jpg';
+	break;
+	case 5:
+	div_name = 'q5';
+	filename = 'pace.jpg';
+	break;
+	case 6:
+	div_name = 'q6';
+	filename = 'learnsomething.jpg';
+	break;
+	case 7:
+	div_name = 'q7b';
+	filename = 'usefulnotes.jpg';
+	break;
+	case 8:
+	div_name = 'q8b';
+	filename = 'usefulvisualaids.jpg';
+	break;
+	case 9:
+	div_name = 'q9b';
+	filename = 'practicaleasy.jpg';
+	break;
+	case 9.5:
+	div_name = 'q9c';
+	filename = 'practicalsupport.jpg';
+	break;
+	case 10:
+	div_name = 'q10';
+	filename = 'coursework.jpg';
+	break;
+	default:
+	div_name = 'q1';
+	filename = 'howinteresting.jpg';
+	break;
+	}
+
+	
 	//Set the exported Image Format.Supported jpeg and png type.      
   //To Change Image Format, call before any procedure the SetImageFormat method.
   grChartImg.SetImageFormat = {type:'jpeg'};
   
   var imageData=grChartImg.GetImageData(div_name);
-  
-  alert(imageData);
+  post_to_url('save.php', {d: imageData, f: filename});
+  //img_download(imageData);
+  // var url = imageData.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+// window.open(url);
 
   }
   </script>
+  <script type="text/javascript">
+  	
+	//credit to Rakesh Pai http://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit/133997#133997
+	function post_to_url(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+	
+	
+	/* function img_download(data){
+	var str = "save.php?i=";
+	str = str + data;
+	str = str + "f=howinteresting.jpg";
+	window.open(str,"_self")
+	}
+   */</script>
   <script type="text/javascript">
   
   function pdf() {
@@ -615,13 +727,14 @@ ob_end_flush();
   var imgDataQ9c=grChartImg.GetImageData('q9c');
   <?php if ($lecture != 1) { echo "var imgDataQ10=grChartImg.GetImageData('q10');" ;} ?>
   var doc = new jsPDF();
-
-  doc.addImage(imgDataQ1, 'JPEG', 5, 5, 100, 75);
-  doc.addImage(imgDataQ2, 'JPEG', 110, 5, 100, 75);
-  doc.addImage(imgDataQ3, 'JPEG', 5, 85, 100, 75);
-  doc.addImage(imgDataQ4, 'JPEG', 110, 85, 100, 75);
-  doc.addImage(imgDataQ5, 'JPEG', 5, 165, 100, 75);
-  doc.addImage(imgDataQ6, 'JPEG', 110, 165, 100, 75);
+doc.setFontSize(16);
+doc.text(20, 20, '<?php echo $module. ' Results - Passhprase: "' . $passphrase .'"'?>');
+  doc.addImage(imgDataQ1, 'JPEG', 5, 25, 100, 75);
+  doc.addImage(imgDataQ2, 'JPEG', 110, 25, 100, 75);
+  doc.addImage(imgDataQ3, 'JPEG', 5, 105, 100, 75);
+  doc.addImage(imgDataQ4, 'JPEG', 110, 105, 100, 75);
+  doc.addImage(imgDataQ5, 'JPEG', 5, 185, 100, 75);
+  doc.addImage(imgDataQ6, 'JPEG', 110, 185, 100, 75);
   doc.addPage();
   doc.addImage(imgDataQ7b, 'JPEG', 5, 5, 100, 75);
   doc.addImage(imgDataQ8b, 'JPEG', 110, 5, 100, 75);
@@ -633,6 +746,79 @@ ob_end_flush();
 
   doc.output('save', 'feedback_results.pdf'); 
     }
+</script>
+<script type = "text/javascript">
+
+function getcsv(csvnumber){
+var thiscsv
+var filename
+	switch (csvnumber)
+	{
+	case 1:
+	thiscsv = csv;
+	filename = 'howinteresting.csv';
+	break;
+	case 2:
+	thiscsv = csv2;
+	filename = 'easytofollow.csv';
+	break;
+	case 3:
+	thiscsv = csv3;
+	filename = 'howdifficult.csv';
+	break;
+	case 4:
+	thiscsv = csv4;
+	filename = 'lecturerinteraction.csv';
+	break;
+	case 5:
+	thiscsv = csv5;
+	filename = 'pace.csv'
+	break;
+	case 6:
+	thiscsv = csv6;
+	filename = 'learnsomething.csv';
+	break;
+	case 7:
+	thiscsv = csv7b;
+	filename = 'usefulnotes.csv';
+	break;
+	case 8:
+	thiscsv = csv8b;
+	filename = 'usefulvisualaids.csv';
+	break;
+	case 9:
+	thiscsv = csv9b;
+	filename = 'practicaleasy.csv';
+	break;
+	case 9.5:
+	thiscsv = csv9c;
+	filename = 'practicalsupport.csv';
+	break;
+	case 10:
+	thiscsv = csv10;
+	filename = 'coursework.csv';
+	break;
+	default:
+	thiscsv = csv;
+	filename = 'howinteresting.csv';
+	break;
+	}
+	//post_to_url('save.php', {d: thiscsv, f: filename});
+	downloadCSV(thiscsv, filename)
+	}
+</script>
+<script type="text/javascript">
+function downloadCSV (csv_out, filename) {
+            var blob = new Blob([csv_out], {type: 'text/csv;charset=utf-8'});
+            var url  = window.URL || window.webkitURL;
+            var link = document.createElementNS("http://www.w3.org/1999/xhtml", "a");
+            link.href = url.createObjectURL(blob);
+            link.download = filename; 
+
+            var event = document.createEvent("MouseEvents");
+            event.initEvent("click", true, false);
+            link.dispatchEvent(event); 
+}
 </script>
   </body>
 </html>
