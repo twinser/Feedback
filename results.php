@@ -295,7 +295,7 @@ ob_end_flush();
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1 maximum-scale=1, user-scalable=no" />
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
 
@@ -312,7 +312,7 @@ ob_end_flush();
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-var csv, csv2, csv3, csv4, csv5, csv6, csv7b, csv8b, csv9b, csv9c, csv10;
+	var csv, csv2, csv3, csv4, csv5, csv6, csv7b, csv8b, csv9b, csv9c, csv10;
       // Load the Visualization API and the piechart package.
       google.load('visualization', '1.0', {'packages':['corechart']});
 
@@ -324,166 +324,253 @@ var csv, csv2, csv3, csv4, csv5, csv6, csv7b, csv8b, csv9b, csv9c, csv10;
       // draws it.
       function drawChart() {
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Answer');
-        data.addColumn('number', 'Count');
-        data.addRows([
-          ['Boring', <?php echo $q1ans[0] ?>],
-          ['Not very interesting', <?php echo $q1ans[1] ?>],
-          ['Interesting', <?php echo $q1ans[2] ?>],
-          ['Very interesting', <?php echo $q1ans[3] ?>],
-          ['Extremely interesting', <?php echo $q1ans[4] ?>]
-        ]);
-	
-    
- 	var data2 = new google.visualization.DataTable();
-        data2.addColumn('string', 'Answer');
-        data2.addColumn('number', 'Count');
-        data2.addRows([
-          ['Yes', <?php echo $q2ans[0] ?>],
-          ['No', <?php echo $q2ans[1] ?>],
-                  ]);
-	
-        var data3 = new google.visualization.DataTable();
-        data3.addColumn('string', 'Answer');
-        data3.addColumn('number', 'Count');
-        data3.addRows([
-          ['Too easy', <?php echo $q3ans[0] ?>],
-          ['Somewhat easy', <?php echo $q3ans[1] ?>],
-          ['Neither easy nor difficult', <?php echo $q3ans[2] ?>],
-          ['Challenging', <?php echo $q3ans[3] ?>],
-          ['Too difficult', <?php echo $q3ans[4] ?>]
+		// Create the data table.
+        var data = google.visualization.arrayToDataTable([
+		['Answer', 'Count',  { role: 'annotation' } ],
+		['Boring', <?php echo $q1ans[0] ?>, <?php echo $q1ans[0] ?>],
+        ['Not very interesting', <?php echo $q1ans[1] ?>, <?php echo $q1ans[1] ?>],
+        ['Interesting', <?php echo $q1ans[2] ?>, <?php echo $q1ans[2] ?>],
+        ['Very interesting', <?php echo $q1ans[3] ?>, <?php echo $q1ans[3] ?>],
+        ['Extremely interesting', <?php echo $q1ans[4] ?>, <?php echo $q1ans[4] ?>]
         ]);
 		
 		
-        var data4 = new google.visualization.DataTable();
-        data4.addColumn('string', 'Answer');
-        data4.addColumn('number', 'Count');
-        data4.addRows([
-          ['Not enough interaction', <?php echo $q4ans[0] ?>],
-          ['Some interaction', <?php echo $q4ans[1] ?>],
-          ['Enough interaction', <?php echo $q4ans[2] ?>],
-          ['Lots of interaction', <?php echo $q4ans[3] ?>],
-          ['Too Much interation', <?php echo $q4ans[4] ?>]
+		var data2 = google.visualization.arrayToDataTable([
+		['Answer', 'Count'],
+		['Yes', <?php echo $q2ans[0] ?>],
+		['No', <?php echo $q2ans[1] ?>],
+		]);
+		
+		var data3 = google.visualization.arrayToDataTable([
+		['Answer', 'Count',  { role: 'annotation' } ],
+		['Too easy', <?php echo $q3ans[0] ?>,<?php echo $q3ans[0] ?>],
+        ['Somewhat easy', <?php echo $q3ans[1] ?>,<?php echo $q3ans[1] ?>],
+        ['Neither easy nor difficult', <?php echo $q3ans[2] ?>,<?php echo $q3ans[2] ?>],
+        ['Challenging', <?php echo $q3ans[3] ?>,<?php echo $q3ans[3] ?>],
+        ['Too difficult', <?php echo $q3ans[4] ?>,<?php echo $q3ans[4] ?>]
         ]);
-        var data5 = new google.visualization.DataTable();
-        data5.addColumn('string', 'Answer');
-        data5.addColumn('number', 'Count');
-        data5.addRows([
-          ['Too slow', <?php echo $q5ans[0] ?>],
-          ['Slow', <?php echo $q5ans[1] ?>],
-          ['Well paced', <?php echo $q5ans[2] ?>],
-          ['Fast', <?php echo $q5ans[3] ?>],
-          ['Too fast', <?php echo $q5ans[4] ?>]
+		
+		var data4 = google.visualization.arrayToDataTable([
+		['Answer', 'Count',  { role: 'annotation' } ],
+		['Not enough interaction', <?php echo $q4ans[0] ?>,<?php echo $q4ans[0] ?>],
+        ['Some interaction', <?php echo $q4ans[1] ?>,<?php echo $q4ans[1] ?>],
+        ['Enough interaction', <?php echo $q4ans[2] ?>,<?php echo $q4ans[2] ?>],
+        ['Lots of interaction', <?php echo $q4ans[3] ?>,<?php echo $q4ans[3] ?>],
+        ['Too Much interation', <?php echo $q4ans[4] ?>,<?php echo $q4ans[4] ?>]
         ]);
-        var data6 = new google.visualization.DataTable();
-        data6.addColumn('string', 'Answer');
-        data6.addColumn('number', 'Count');
-        data6.addRows([
-          ['Yes', <?php echo $q6ans[0] ?>],
-          ['No', <?php echo $q6ans[1] ?>],
-                  ]);
-        var data7b = new google.visualization.DataTable();
-        data7b.addColumn('string', 'Answer');
-        data7b.addColumn('number', 'Count');
-        data7b.addRows([
-          ['Yes', <?php echo $q7bans[0] ?>],
-          ['No', <?php echo $q7bans[1] ?>],
-           ]);
-        var data8b = new google.visualization.DataTable();
-        data8b.addColumn('string', 'Answer');
-        data8b.addColumn('number', 'Count');
-        data8b.addRows([
-          ['Yes', <?php echo $q8bans[0] ?>],
-          ['No', <?php echo $q8bans[1] ?>],
-           ]);   
-        var data9b = new google.visualization.DataTable();
-        data9b.addColumn('string', 'Answer');
-        data9b.addColumn('number', 'Count');
-        data9b.addRows([
-          ['Too easy', <?php echo $q9bans[0] ?>],
-          ['Somewhat easy', <?php echo $q9bans[1] ?>],
-          ['Neither easy nor difficult', <?php echo $q9bans[2] ?>],
-          ['Challenging', <?php echo $q9bans[3] ?>],
-          ['Too difficult', <?php echo $q9bans[4] ?>]
+		
+		var data5 = google.visualization.arrayToDataTable([
+		['Answer', 'Count',  { role: 'annotation' } ],
+		['Too slow', <?php echo $q5ans[0] ?>,<?php echo $q5ans[0] ?>],
+        ['Slow', <?php echo $q5ans[1] ?>,<?php echo $q5ans[1] ?>],
+        ['Well paced', <?php echo $q5ans[2] ?>, <?php echo $q5ans[2] ?>],
+        ['Fast', <?php echo $q5ans[3] ?>, <?php echo $q5ans[3] ?>],
+        ['Too fast', <?php echo $q5ans[4] ?>, <?php echo $q5ans[4] ?>]
         ]);
-        var data9c = new google.visualization.DataTable();
-        data9c.addColumn('string', 'Answer');
-        data9c.addColumn('number', 'Count');
-        data9c.addRows([
-          ['Non-existent', <?php echo $q9cans[0] ?>],
-          ['Sometimes there', <?php echo $q9cans[1] ?>],
-          ['Good', <?php echo $q9cans[2] ?>],
-          ['Very good', <?php echo $q9cans[3] ?>],
-          ['Excellent', <?php echo $q9cans[4] ?>]
+		
+		var data6 = google.visualization.arrayToDataTable([
+		['Answer', 'Count'],
+		['Yes', <?php echo $q6ans[0] ?>],
+		['No', <?php echo $q6ans[1] ?>],
+		]);
+		
+		var data7b = google.visualization.arrayToDataTable([
+		['Answer', 'Count'],
+		['Yes', <?php echo $q7bans[0] ?>],
+		['No', <?php echo $q7bans[1] ?>],
+		]);
+		
+		var data8b = google.visualization.arrayToDataTable([
+		['Answer', 'Count'],
+		['Yes', <?php echo $q8bans[0] ?>],
+		['No', <?php echo $q8bans[1] ?>],
+		]);
+		
+		var data9b = google.visualization.arrayToDataTable([
+		['Answer', 'Count',  { role: 'annotation' } ],
+		['Too easy', <?php echo $q9bans[0] ?>,<?php echo $q9bans[0] ?>],
+        ['Somewhat easy', <?php echo $q9bans[1] ?>,<?php echo $q9bans[1] ?>],
+        ['Neither easy nor difficult', <?php echo $q9bans[2] ?>,<?php echo $q9bans[2] ?>],
+        ['Challenging', <?php echo $q9bans[3] ?>,<?php echo $q9bans[3] ?>],
+        ['Too difficult', <?php echo $q9bans[4] ?>,<?php echo $q9bans[4] ?>]
         ]);
-        <?php if ($lecture != 1) { echo "var data10 = new google.visualization.DataTable();
-        data10.addColumn('string', 'Answer');
-        data10.addColumn('number', 'Count');
-        data10.addRows([
-          ['Too easy', $q10ans[0] ],
-          ['Somewhat easy', $q10ans[1] ],
-          ['Neither easy nor difficult', $q10ans[2]],
-          ['Challenging', $q10ans[3] ],
-          ['Too difficult', $q10ans[4] ]
+		
+		var data9c = google.visualization.arrayToDataTable([
+		['Answer', 'Count',  { role: 'annotation' } ],
+		['Non-existent', <?php echo $q9cans[0] ?>,<?php echo $q9cans[0] ?>],
+        ['Sometimes there', <?php echo $q9cans[1] ?>,<?php echo $q9cans[1] ?>],
+        ['Good', <?php echo $q9cans[2] ?>,<?php echo $q9cans[2] ?>],
+        ['Very good', <?php echo $q9cans[3] ?>,<?php echo $q9cans[3] ?>],
+        ['Excellent', <?php echo $q9cans[4] ?>,<?php echo $q9cans[4] ?>]
+        ]);
+		<?php if ($lecture != 1) { echo "var data10 = google.visualization.arrayToDataTable([
+		['Answer', 'Count',  { role: 'annotation' } ],
+        ['Too easy', $q10ans[0],$q10ans[0] ],
+        ['Somewhat easy', $q10ans[1],$q10ans[1] ],
+        ['Neither easy nor difficult', $q10ans[2],$q10ans[2]],
+        ['Challenging', $q10ans[3],$q10ans[3] ],
+        ['Too difficult', $q10ans[4],$q10ans[4] ]
         ]);";}?>
+		
+		
+		//OLD WAY, changed to array of arrays for labelling. Kept just in case.
+        // var data = new google.visualization.DataTable();
+        // data.addColumn('string', 'Answer');
+        // data.addColumn('number', 'Count');
+        // data.addRows([
+          // ['Boring', <?php echo $q1ans[0] ?>],
+          // ['Not very interesting', <?php echo $q1ans[1] ?>],
+          // ['Interesting', <?php echo $q1ans[2] ?>],
+          // ['Very interesting', <?php echo $q1ans[3] ?>],
+          // ['Extremely interesting', <?php echo $q1ans[4] ?>]
+        // ]);
+		
+		// var data2 = new google.visualization.DataTable();
+			// data2.addColumn('string', 'Answer');
+			// data2.addColumn('number', 'Count');
+			// data2.addRows([
+			  // ['Yes', <?php echo $q2ans[0] ?>],
+			  // ['No', <?php echo $q2ans[1] ?>],
+					  // ]);
+		
+        // var data3 = new google.visualization.DataTable();
+        // data3.addColumn('string', 'Answer');
+        // data3.addColumn('number', 'Count');
+        // data3.addRows([
+          // ['Too easy', <?php echo $q3ans[0] ?>],
+          // ['Somewhat easy', <?php echo $q3ans[1] ?>],
+          // ['Neither easy nor difficult', <?php echo $q3ans[2] ?>],
+          // ['Challenging', <?php echo $q3ans[3] ?>],
+          // ['Too difficult', <?php echo $q3ans[4] ?>]
+        // ]);
+		
+		
+        // var data4 = new google.visualization.DataTable();
+        // data4.addColumn('string', 'Answer');
+        // data4.addColumn('number', 'Count');
+        // data4.addRows([
+          // ['Not enough interaction', <?php echo $q4ans[0] ?>],
+          // ['Some interaction', <?php echo $q4ans[1] ?>],
+          // ['Enough interaction', <?php echo $q4ans[2] ?>],
+          // ['Lots of interaction', <?php echo $q4ans[3] ?>],
+          // ['Too Much interation', <?php echo $q4ans[4] ?>]
+        // ]);
+		
+        // var data5 = new google.visualization.DataTable();
+        // data5.addColumn('string', 'Answer');
+        // data5.addColumn('number', 'Count');
+        // data5.addRows([
+          // ['Too slow', <?php echo $q5ans[0] ?>],
+          // ['Slow', <?php echo $q5ans[1] ?>],
+          // ['Well paced', <?php echo $q5ans[2] ?>],
+          // ['Fast', <?php echo $q5ans[3] ?>],
+          // ['Too fast', <?php echo $q5ans[4] ?>]
+        // ]);
+		
+        // var data6 = new google.visualization.DataTable();
+        // data6.addColumn('string', 'Answer');
+        // data6.addColumn('number', 'Count');
+        // data6.addRows([
+          // ['Yes', <?php echo $q6ans[0] ?>],
+          // ['No', <?php echo $q6ans[1] ?>],
+                  // ]);
+				  
+        // var data7b = new google.visualization.DataTable();
+        // data7b.addColumn('string', 'Answer');
+        // data7b.addColumn('number', 'Count');
+        // data7b.addRows([
+          // ['Yes', <?php echo $q7bans[0] ?>],
+          // ['No', <?php echo $q7bans[1] ?>],
+           // ]);
+		   
+        // var data8b = new google.visualization.DataTable();
+        // data8b.addColumn('string', 'Answer');
+        // data8b.addColumn('number', 'Count');
+        // data8b.addRows([
+          // ['Yes', <?php echo $q8bans[0] ?>],
+          // ['No', <?php echo $q8bans[1] ?>],
+           // ]);   
+		   
+        // var data9b = new google.visualization.DataTable();
+        // data9b.addColumn('string', 'Answer');
+        // data9b.addColumn('number', 'Count');
+        // data9b.addRows([
+          // ['Too easy', <?php echo $q9bans[0] ?>],
+          // ['Somewhat easy', <?php echo $q9bans[1] ?>],
+          // ['Neither easy nor difficult', <?php echo $q9bans[2] ?>],
+          // ['Challenging', <?php echo $q9bans[3] ?>],
+          // ['Too difficult', <?php echo $q9bans[4] ?>]
+        // ]);
+		
+        // var data9c = new google.visualization.DataTable();
+        // data9c.addColumn('string', 'Answer');
+        // data9c.addColumn('number', 'Count');
+        // data9c.addRows([
+          // ['Non-existent', <?php echo $q9cans[0] ?>],
+          // ['Sometimes there', <?php echo $q9cans[1] ?>],
+          // ['Good', <?php echo $q9cans[2] ?>],
+          // ['Very good', <?php echo $q9cans[3] ?>],
+          // ['Excellent', <?php echo $q9cans[4] ?>]
+        // ]);
+		
+        // var data10 = new google.visualization.DataTable();
+        // data10.addColumn('string', 'Answer');
+        // data10.addColumn('number', 'Count');
+        // data10.addRows([
+          // ['Too easy', $q10ans[0] ],
+          // ['Somewhat easy', $q10ans[1] ],
+          // ['Neither easy nor difficult', $q10ans[2]],
+          // ['Challenging', $q10ans[3] ],
+          // ['Too difficult', $q10ans[4] ]
+        // ]);
         
         // Set chart options
-        var options = {'title':'How interesting did you find the module?',
+        var options = {'title':'How interesting did you find the <?php if ($lecture != 1) { echo "module"; } else{ echo "lecture"; }?>?',
                        'width':600,
                        'height':450,
-					   //'backgroundColor': 'transparent', 
+					   chartArea: {width: '50%'},
                        legend : {position : 'none'}};
-        var options2 = {'title':'Did you find the module easy to follow?',
+        var options2 = {'title':'Did you find the <?php if ($lecture != 1) { echo "module"; } else{ echo "lecture"; }?> easy to follow?',
+                       'width':600,
+                       'height':450,};
+        var options3 = {'title':'How difficult did you find the <?php if ($lecture != 1) { echo "module"; } else{ echo "lecture"; }?>?',
                        'width':600,
                        'height':450,
-					   //'backgroundColor': 'transparent', 
-                       pieSliceText: 'none'};
-        var options3 = {'title':'How difficult did you find the module?',
-                       'width':600,
-                       'height':450,
-					   //'backgroundColor': 'transparent', 
+					   chartArea: {width: '50%'},
                        legend : {position : 'none'}};
         var options4 = {'title':'How well did the lecturer interact with the group?',
                        'width':600,
                        'height':450,
-					   //'backgroundColor': 'transparent', 
+					   chartArea: {width: '50%'},
                        legend : {position : 'none'}};
-        var options5 = {'title':'How was the pace of the module?',
+        var options5 = {'title':'How was the pace of the <?php if ($lecture != 1) { echo "module"; } else{ echo "lecture"; }?>?',
                        'width':600,
                        'height':450,
-					   //'backgroundColor': 'transparent', 
+					   chartArea: {width: '50%'},
                        legend : {position : 'none'}};
         var options6 = {'title':'Did you learn something?',
                        'width':600,
-                       'height':450,
-					   //'backgroundColor': 'transparent', 
-                       pieSliceText: 'none'};
+                       'height':450,};
         var options7b = {'title':'Would you describe the lecture notes as useful?',
                        'width':600,
-                       'height':450,
-					   //'backgroundColor': 'transparent', 
-                       pieSliceText: 'none'};
+                       'height':450,};
         var options8b = {'title':'Would you describe the visual aids as useful?',
                        'width':600,
-                       'height':450,
-					   //'backgroundColor': 'transparent', 
-                       pieSliceText: 'none'};
+                       'height':450,};
         var options9b = {'title':'How easy was the practical work?',
                        'width':600,
                        'height':450,
-					   //'backgroundColor': 'transparent', 
+					   chartArea: {width: '50%'},
                        legend : {position : 'none'}};
         var options9c = {'title':'How was the support in the practical sessions?',
                        'width':600,
                        'height':450,
-					   //'backgroundColor': 'transparent', 
+					   chartArea: {width: '50%'},
                        legend : {position : 'none'}};
         <?php if ($lecture != 1) { echo "var options10 = {'title':'How did you find the coursework?',
                        'width':600,
                        'height':450,
-					   //'backgroundColor': 'transparent', 
+					   chartArea: {width: '50%'},
                        legend : {position : 'none'}};";} ?>
 
 
@@ -545,7 +632,7 @@ var csv, csv2, csv3, csv4, csv5, csv6, csv7b, csv8b, csv9b, csv9c, csv10;
 	<!--div style="float: left"-->
 	<div class="row">
 	<div class="col-md-6">
-	<div id="q1"></div>
+	<div id="q1" style="width: 600px; height: 450px;"></div>
 	<a class="btn btn-info"href="javascript:getImageData(1)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(1)" role="button">Download as CSV</a>
 	</div>
 	<div class="col-md-6">

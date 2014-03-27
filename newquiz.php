@@ -26,14 +26,17 @@ if (mysqli_connect_errno($con))
   
   
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<style type="text/css">
-<!--
-@import url("style.css");
--->
-</style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1 maximum-scale=1, user-scalable=no" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
 <script src="datetimepicker_css.js">
+
 //Date Time Picker script- by TengYong Ng of http://www.rainforestnet.com
 //Script featured on JavaScript Kit (http://www.javascriptkit.com)
 //For this script, visit http://www.javascriptkit.com 
@@ -77,13 +80,14 @@ xmlhttp.send();
 
 </head>
 <body onload="Load()">
+<div class="container">
 <h1>
 Create new quiz
 </h1>
 <p id="answerall" style="display: none;">
 <font color="red">  You must fill in all the required fields! </font></p>
 
-<form name="form5" method="post" action="checknew.php">
+<form role="form" name="form5" method="post" action="checknew.php">
 
 <select name="modules" id="modules">
 <option value="" selected disabled>Module</option>
@@ -207,9 +211,25 @@ Yes<input type="radio" name="cw"  value="1" <?php if (($_COOKIE['cw_mcook'] == 1
 
 <p id="lectopic" style="display: none;"><b>Lecture Topic:</b><input name="lecturetopic" type="text" <?php echo 'value="'.$_COOKIE['lecturetopic_mcook'].'" '?> id="lecturetopic"></p>
 <p id="lecdate" style="display: none;"><b>Lecture Date:</b><input name="lecturedate" type="text" <?php echo 'value="'.$_COOKIE['lecturedate_mcook'].'" '?> id="lecturedate"><img src="images/cal.gif" onclick="javascript:NewCssCal('lecturedate', 'yyyyMMdd')" style="cursor:pointer"/></p>
-
-<p><input type="submit" name="SubmitNewQuiz" value="Submit"></p><br>
+<p><button type="submit" class="btn btn-default" name="SubmitNewQuiz" id="SubmitNewQuiz" value="Submit">Submit</button></p>
+<br>
 </form>
+<p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
+</div>
+<script type="text/javascript">
+	function imageload(type){
+	if (type == "c")
+	{
+	document.getElementById("SubmitNewQuiz").className += " disabled";
+	}
+	else
+	{
+	document.getElementById("SubmitNewQuiz").className =
+   document.getElementById("SubmitNewQuiz").className.replace
+      ( /(?:^|\s)disabled(?!\S)/g , '' )
+	}
+	}
+</script>
 
 <script type="text/javascript">
 
@@ -257,8 +277,7 @@ Yes<input type="radio" name="cw"  value="1" <?php if (($_COOKIE['cw_mcook'] == 1
    emptyanswers();
    }
 </script>
-  <p><a href ="admin_login_success.php">Back</a></p>
-  <p><a href ="Logout.php">Log out</a></p>
+
 </body>
 </html>
 <?php ob_end_flush(); ?>

@@ -37,19 +37,22 @@ $mod4 = $row['Module4'];
 $mod5 = $row['Module5'];
 }
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<style type="text/css">
-<!--
-@import url("style.css");
--->
-</style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1 maximum-scale=1, user-scalable=no" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
 </head>
 <body onload="Load()">
+<div class="container">
 <h1>
 Edit user
 </h1>
-<form name="form5" method="post" action="checkedit.php">
+<form role="form" name="form5" method="post" action="checkedit.php">
 <p><h3> User type </h3>
 Lecturer <input type="radio" name="admin"  value="0" onclick="showall()" <?php if ($admin == 0){ echo 'checked';} ?> > <br>
 Admin   <input type="radio" name="admin" value="1" onclick="hideall()" <?php if ($admin == 1){ echo 'checked';} ?> > </p>
@@ -149,11 +152,13 @@ echo '>' .$code .' - '. $name . '</option>';
 }
 ?>
 </select>
-<p><input type="submit" name="SubmitEditUser" value="Submit"></p><br>
+<br>
+<button type="submit" class="btn btn-default" name="SubmitEditUser" id="SubmitEditUser" value="Submit">Submit</button></p>
+<br>
 </form>
-<p><a href ="users.php">Back</a></p>
-<p><a href ="Logout.php">Log out</a></p>
-
+<br>
+<p> <a class="btn btn-warning" href="users.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
+</div>
 <script type="text/javascript">
 
   function show(id){ 

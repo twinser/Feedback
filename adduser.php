@@ -26,13 +26,16 @@ if (mysqli_connect_errno($con))
   
   
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<style type="text/css">
-<!--
-@import url("style.css");
--->
-</style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1 maximum-scale=1, user-scalable=no" />
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+
 <script>
 function showResult(str)
 {
@@ -63,10 +66,11 @@ xmlhttp.send();
 </script>
 </head>
 <body onload="Load()">
+<div class="container">
 <h1>
 Add new user
 </h1>
-<form name="form4" method="post" action="checkadd.php">
+<form role="form" name="form4" method="post" action="checkadd.php">
 <h3> User type </h3>
 <p>Lecturer <input type="radio" name="admin"  value="0" onclick="show('module1')" checked> <br>
 Admin   <input type="radio" name="admin" value="1" onclick="hideall()" > </p>
@@ -146,13 +150,26 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 }
 ?>
 </select>
-<p><input type="submit" name="SubmitAddUser" value="Submit"></p><br>
+<br>
+<button type="submit" class="btn btn-default" name="SubmitAddUser" id="SubmitAddUser" value="Submit">Submit</button></p>
 </form>
-
-
-  <p><a href ="admin_login_success.php">Back</a></p>
-  <p><a href ="Logout.php">Log out</a></p>
-  
+<br>
+<p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
+</div>
+<script type="text/javascript">
+	function imageload(type){
+	if (type == "c")
+	{
+	document.getElementById("SubmitAddUser").className += " disabled";
+	}
+	else
+	{
+	document.getElementById("SubmitAddUser").className =
+   document.getElementById("SubmitAddUser").className.replace
+      ( /(?:^|\s)disabled(?!\S)/g , '' )
+	}
+	}
+</script>
   <script type="text/javascript">
 
   function show(id){ 

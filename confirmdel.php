@@ -1,4 +1,10 @@
 <?php
+if($_COOKIE['admin_cook'] != 1)
+{
+header("location:admin_login_success.php");
+}
+
+else{
 ob_start();
 $host="localhost"; // Host name 
 $username="nk011269_admin"; // Mysql username 
@@ -17,15 +23,9 @@ if (mysqli_connect_errno($con))
   }
 
 // passphrase sent from form 
-$puserid=$_POST['UserID']; 
-$guserid=$_GET['user'];
+$puserid=$_POST['userid']; 
 
-if ($puserid != $guserid)
-{
-echo 'Error!';
-}
-else
-{
+
 
 
 
@@ -37,6 +37,6 @@ $puserid = mysqli_real_escape_string($con,$puserid);
 
 mysqli_query($con,"DELETE FROM Users WHERE UserID='$puserid'");
 
-header("location:userdeleted.php");
-
-}?>
+header("location:users.php");
+}
+?>

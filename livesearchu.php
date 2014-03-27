@@ -27,10 +27,10 @@ $count=mysqli_num_rows($result);
 
 // If result matched $q, table row must be 1 row
 if($count==1){
-echo '<img src="/images/Cross.svg" alt="Username already in use, please try another" width="16" height="16">';
+echo '<img src="/images/Cross.svg" id="cross" onload="imageload(\'c\')" alt="Username already in use, please try another" width="16" height="16">';
 }
 else{
-echo '<img src="/images/Tick.svg" alt="Username ok" width="16" height="16">';
+echo '<img src="/images/Tick.svg" id="tick" onload="imageload(\'t\')" alt="Username ok" width="16" height="16">';
 
 }
  

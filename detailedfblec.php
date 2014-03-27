@@ -16,6 +16,7 @@ header("location:passphrase_login.php");
 <html>
 
 <head>
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1 maximum-scale=1, user-scalable=no" />
 <style type="text/css">
 <!--
 @import url("style.css");

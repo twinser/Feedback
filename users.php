@@ -7,6 +7,7 @@ header("location:login_success.php");
 <html lang="en"> 
 <head> <meta charset="utf-8"> 
 <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1 maximum-scale=1" />
 <link href="css/bootstrap.min.css" rel="stylesheet"> 
 <link href="css/main.css" rel="stylesheet"> 
 </head> 
@@ -53,7 +54,7 @@ $result=mysqli_query($con,$sql);
   $mod5 = $row['Module5'];
  
 
-echo '<tr><td>'.$userid.'</td><td>'.$admin.'</td><td>'.$mod1.'</td><td>'.$mod2.'</td><td>'.$mod3.'</td><td>'.$mod4.'</td><td>'.$mod5.'</td><td><a class="btn btn-info btn-xs" href="edituser.php?user='. $userid . '" role="button">Edit</a> <a class="btn btn-danger btn-xs" href="deleteuser.php?user='. $userid . '" role="button">Delete</a></td> </tr>';
+echo '<tr><td>'.$userid.'</td><td>'.$admin.'</td><td>'.$mod1.'</td><td>'.$mod2.'</td><td>'.$mod3.'</td><td>'.$mod4.'</td><td>'.$mod5.'</td><td><a class="btn btn-info btn-xs" href="edituser.php?user='. $userid . '" role="button">Edit</a> <a class="btn btn-danger btn-xs" href="javascript:deluser(\''. $userid . '\')" role="button">Delete</a></td> </tr>';
  
 } // End our while loop
 
@@ -63,6 +64,43 @@ echo '<tr><td>'.$userid.'</td><td>'.$admin.'</td><td>'.$mod1.'</td><td>'.$mod2.'
 </div>
 <p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 <script src="sorttable.js"></script>
-  
+ 
+<script type="text/javascript">
+function deluser(uid){
+var message = "Are you sure you want to delete " + uid + "?";
+var response=confirm(message);
+if (response==true)
+{
+post_to_url('confirmdel.php', {userid: uid});
+}
+}
+</script>
+
+<script type="text/javascript">
+// From http://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit/133997#133997
+function post_to_url(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+</script>
 </body>
 </html>
