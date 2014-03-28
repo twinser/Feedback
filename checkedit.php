@@ -63,7 +63,5 @@ $password = mysqli_real_escape_string($con,$password);
 
 
 mysqli_query($con,"UPDATE Users SET Password='$password', Admin='$admin', Module1=$mod1, Module2=$mod2, Module3=$mod3, Module4=$mod4, Module5=$mod5 WHERE UserID='$userid'");
-
-header("location:useredited.php");
-
+echo "<html><head><META HTTP-EQUIV=\"refresh\" CONTENT=\"0;URL=users.php\"></head><body onload=\"javascript:window.alert('User edited!')\"> </body></html>";
 ?>

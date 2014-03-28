@@ -99,11 +99,10 @@ $description = mysqli_real_escape_string($con,$description);
 $passphrase = mysqli_real_escape_string($con,$passphrase);
 
 
-echo $moduleid . $passphrase . $description . $lecturequiz . $today . $expdate . $lecturetopic . $lecturedate . $cw;
+
 
 mysqli_query($con,"INSERT INTO Quizzes (QuizID, ModuleID, Passphrase, Description, AfterLectureQuiz, DateAdded, ExpiryDate, LectureTopic, LectureDate, Coursework) VALUES ( '', '$moduleid', '$passphrase', '$description', '$lecturequiz', '$today' , '$expdate', $lecturetopic, $lecturedate, $cw)");
-
-header("location:quizcreated.php");
+echo "<html><head><META HTTP-EQUIV=\"refresh\" CONTENT=\"0;URL=quizzes.php\"></head><body onload=\"javascript:window.alert('Survey added!')\"> </body></html>";
 }
 
 ?>

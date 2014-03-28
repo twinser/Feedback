@@ -5,7 +5,7 @@
 @import url("style.css");
 -->
 </style>
-<META HTTP-EQUIV="refresh" CONTENT="10;URL=users.php">
+<META HTTP-EQUIV="refresh" CONTENT="1;URL=users.php">
 <script src="countdown.js"></script>
 </head>
 <body>

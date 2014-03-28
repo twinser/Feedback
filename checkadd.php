@@ -85,7 +85,6 @@ $password = mysqli_real_escape_string($con,$password);
 
 
 mysqli_query($con,"INSERT INTO Users (UserID, Password, Admin, Module1, Module2, Module3, Module4, Module5) VALUES ( '$userid', '$password', '$admin', $mod1, $mod2, $mod3, $mod4, $mod5)");
-
-header("location:useradded.php");
+echo "<html><head><META HTTP-EQUIV=\"refresh\" CONTENT=\"0;URL=users.php\"></head><body onload=\"javascript:window.alert('User added!')\"> </body></html>";
 }
 ?>

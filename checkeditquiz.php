@@ -60,7 +60,5 @@ $passphrase = mysqli_real_escape_string($con,$passphrase);
 
 
 mysqli_query($con,"UPDATE Quizzes SET Passphrase='$passphrase', Description='$description', AfterLectureQuiz='$lecturequiz', ExpiryDate='$expdate', LectureTopic=$lecturetopic, LectureDate=$lecturedate, Coursework=$cw WHERE QuizID='$quizid'");
-
-header("location:quizedited.php");
-
+echo "<html><head><META HTTP-EQUIV=\"refresh\" CONTENT=\"0;URL=quizzes.php\"></head><body onload=\"javascript:window.alert('Survey edited!')\"> </body></html>";
 ?>

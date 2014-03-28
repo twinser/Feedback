@@ -16,13 +16,9 @@ header("location:passphrase_login.php");
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1 maximum-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
-
-
-
-
 </head>
 
 <?php
@@ -54,18 +50,13 @@ echo $_COOKIE['module_cook'];
 <font color="red"> Please enter some feedback in the box! </font>
 </p>
 <br>
-<p><button type="submit" class="btn btn-default" name="SubmitModuleQuiz" value="Submit">Submit</button></p>
+<p><button type="submit" class="btn btn-default" name="SubmitModuleDetailed" value="Submit">Submit</button></p>
 </form>
-
-
-
-
-
 </p>
-
-
 <br>
 <p> <a class="btn btn-warning" href="selectfbtypemod.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Cancel</a> </p>
+</div>
+
 <script type="text/javascript"> 
   function show(id){ 
    document.getElementById(id).style.display='block';
@@ -78,6 +69,7 @@ document.cookie = name +
 '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
 }
 </script>
+
 </body>
 
 </html>

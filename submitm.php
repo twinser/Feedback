@@ -114,22 +114,27 @@ setcookie($cook, "", time()-9999);
 ?>
 
 <html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<style type="text/css">
-<!--
-@import url("style.css");
--->
-</style>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
 
 </head>
 <body>
-<h1>
+<div class="container">
+<h1 class="text-primary pull-left">
 <?php
 echo $_COOKIE['module_cook'];
 ?>
- Module Quiz
-</h1>
-<p><a href="detailedfbmod.php">Give detailed feedback </a></p>
-<p>Finished? <a href="Logout.php"> Click Here  </a></p>
+</h1><h1 class="text-success">   Feedback</h1>
+<br>
+<h4>Choose to give detailed feedback or, if you are done, click the finished button </h4>
+<p><a class="btn btn-default btn-lg" href="detailedfbmod.php" role="button">Give detailed feedback </a></p>
+<p><a class="btn btn-success" href="Logout.php" role="button">Finished</a> </p></div>
 </body>
 </html>
