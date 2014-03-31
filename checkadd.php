@@ -1,11 +1,14 @@
 <?php
 $empties = False;
  
-if (empty($_POST['UserID']) || empty($_POST['Password']) || empty($_POST['module1']))
+if ($_POST['admin'] == 0 &&(empty($_POST['UserID']) || empty($_POST['Password']) || empty($_POST['module1'])))
 	  { 
 	  	$empties = True;
 	  }
-
+elseif ($_POST['admin'] == 1 && (empty($_POST['UserID']) || empty($_POST['Password'])))
+	{
+		$empties = True;
+	}
 
 
 if ($empties == True)
