@@ -312,7 +312,7 @@ ob_end_flush();
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
-	var csv, csv2, csv3, csv4, csv5, csv6, csv7b, csv8b, csv9b, csv9c, csv10;
+	var csv, csv2, csv3, csv4, csv5, csv6, csv7b, csv8b, csv9b, csv9c, csv10, csvall;
       // Load the Visualization API and the piechart package.
       google.load('visualization', '1.0', {'packages':['corechart']});
 
@@ -609,7 +609,8 @@ ob_end_flush();
 	csv9b = google.visualization.dataTableToCsv(data9b);
 	csv9c = google.visualization.dataTableToCsv(data9c);
 	<?php if ($lecture != 1) { echo "csv10 = google.visualization.dataTableToCsv(data10);" ;} ?>
-   
+	csvall = options.title + "\n" + csv + "\n" + options2.title + "\n" + csv2 + "\n" + options3.title + "\n" + csv3 + "\n" + options4.title + "\n" + csv4 + "\n" + options5.title + "\n" + csv5 + "\n" + options6.title + "\n" + csv6 + "\n" + options7b.title + "\n" + csv7b + "\n" + options8b.title + "\n" + csv8b + "\n" + options9b.title + "\n" + csv9b + "\n" + options9c.title + "\n" + csv9c + "\n" <?php if ($lecture != 1) { echo '+ options10.title + "\n" + csv10 + "\n"';}?>; 
+	
       }
 	  
 	
@@ -625,7 +626,7 @@ ob_end_flush();
 		<a href="javascript:getImageData('q1')">No, click me</a>
 		<a href="javascript:demo()" class="button">Run Code</a>
 																			-->
-	<p><a class="btn btn-primary" href="javascript:pdf()" role="button">Download all as PDF</a> <a class="btn btn-info" href="detailed_results.php?quiz=<?php echo $_GET['quiz'] ?>" role="button">View detailed feedback</a>
+	<p><a class="btn btn-primary" href="javascript:pdf()" role="button">Download all as PDF</a> <a class="btn btn-success" href="javascript:getcsv(11)" role="button">Download all as CSV</a> <a class="btn btn-info" href="detailed_results.php?quiz=<?php echo $_GET['quiz'] ?>" role="button">View detailed feedback</a>
 	<a class="btn btn-warning" href="quizzes.php" role="button">Go back</a> <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 	<div id="results">
 	<!--Divs that will hold the pie chart-->
@@ -884,6 +885,10 @@ var filename
 	case 10:
 	thiscsv = csv10;
 	filename = 'coursework.csv';
+	break;
+	case 11:
+	thiscsv = csvall;
+	filename = 'FeedbackResults.csv';
 	break;
 	default:
 	thiscsv = csv;
