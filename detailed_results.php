@@ -28,6 +28,25 @@ $lecture = $row['AfterLectureQuiz'];
 $module = $row['ModuleID'];
 $date = $row['LectureDate'];
 $passphrase = $row['Passphrase'];
+if ($_COOKIE['admin_cook'] == 0)
+{
+if ($_COOKIE['module1_cook'] != $module)
+{
+if ($_COOKIE['module2_cook'] != $module)
+{
+if ($_COOKIE['module3_cook'] != $module)
+{
+if ($_COOKIE['module4_cook'] != $module)
+{
+if ($_COOKIE['module5_cook'] != $module)
+{
+header("location:quizzes.php");
+}
+}
+}
+}
+}
+}
 ob_end_flush();
 ?>
 <!DOCTYPE html> 
@@ -42,7 +61,7 @@ ob_end_flush();
 
 <body class="users-table"> 
 <?php
-if ($lecture = 1){
+if ($lecture == 1){
 echo '<h1 class="text-primary">Detailed Comments - '.$module.' - Passphrase: '.$passphrase.' - Lecture on '.$date.'</h1>';
 }
 else {
@@ -97,7 +116,7 @@ ob_end_flush();
 </tbody>
 </table>
 </div>
-<p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
+<p> <a class="btn btn-warning" href="results.php?quiz=<?php echo $quizid ?>" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 <script src="sorttable.js"></script>
   
 </body>

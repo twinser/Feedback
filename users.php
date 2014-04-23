@@ -1,6 +1,6 @@
 <?php
 if ($_COOKIE['admin_cook'] != 1){
-header("location:login_success.php");
+header("location:admin_login_success.php");
 }
 ?>
 <!DOCTYPE html> 

@@ -29,8 +29,8 @@ echo '<p><a class="btn btn-default btn-lg" href="adduser.php" role="button">Add 
 <a class="btn btn-default btn-lg" href="users.php" role="button">View users</a></p>';
 }
 ?>
-<p><a class="btn btn-default btn-lg" href="newquiz.php" role="button">Create new quiz</a><br>
-<a class="btn btn-default btn-lg" href="quizzes.php" role="button">View quizzes</a></p>
+<p><a class="btn btn-default btn-lg" href="newquiz.php" role="button">Create new feedback survey</a><br>
+<a class="btn btn-default btn-lg" href="quizzes.php" role="button">View existing surveys</a></p>
 <br>
 <p><a class="btn btn-danger" href="Logout.php" role="button">Log out</a></p></div>
 </html>

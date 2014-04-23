@@ -27,6 +27,28 @@ $row = mysqli_fetch_array($result);
 $lecture = $row['AfterLectureQuiz'];
 $module = $row['ModuleID'];
 $passphrase = $row['Passphrase'];
+if ($_COOKIE['admin_cook'] == 0)
+{
+if ($_COOKIE['module1_cook'] != $module)
+{
+if ($_COOKIE['module2_cook'] != $module)
+{
+if ($_COOKIE['module3_cook'] != $module)
+{
+if ($_COOKIE['module4_cook'] != $module)
+{
+if ($_COOKIE['module5_cook'] != $module)
+{
+header("location:quizzes.php");
+}
+}
+}
+}
+}
+}
+
+
+
 ob_end_flush();
 
 ob_start();
