@@ -7,12 +7,12 @@ if (empty($_POST['modules']) || empty($_POST['Passphrase']) || empty($_POST['des
 	  	
 	  	
 	  }
-if ($_POST['wholemod'] == 1 && empty($_POST['lecturetopic'])) {
+if ($_POST['lecfbk'] == 1 && empty($_POST['lecturetopic'])) {
 $empties = True;
 	  	
 	  		  
 }
-if ($_POST['wholemod'] == 1 && empty($_POST['lecturedate'])){
+if ($_POST['lecfbk'] == 1 && empty($_POST['lecturedate'])){
 $empties = True;
 
 
@@ -28,7 +28,7 @@ setcookie('modules_mcook', $_POST['modules'], time()+10);
 setcookie('passphrase_mcook', $_POST['Passphrase'], time()+10);
 setcookie('description_mcook', $_POST['description'], time()+10);
 setcookie('expdate_mcook', $_POST['expdate'], time()+10);
-setcookie('wholemod_mcook', $_POST['wholemod'], time()+10);
+setcookie('lecfbk_mcook', $_POST['lecfbk'], time()+10);
 setcookie('lecturetopic_mcook', $_POST['lecturetopic'], time()+10);
 setcookie('lecturedate_mcook', $_POST['lecturedate'], time()+10);
 setcookie('cw_mcook', $_POST['cw'], time()+10);
@@ -59,7 +59,7 @@ if (mysqli_connect_errno($con))
 
 // passphrase sent from form 
 $moduleid=$_POST['modules']; 
-$lecturequiz=$_POST['wholemod'];
+$lecturequiz=$_POST['lecfbk'];
 $passphrase=$_POST['Passphrase'];
 $expdate=$_POST['expdate'];
 $description =$_POST['description'];

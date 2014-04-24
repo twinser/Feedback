@@ -82,13 +82,13 @@ xmlhttp.send();
 <body onload="Load()">
 <div class="container">
 <h1>
-Create new quiz
+Create new feedback survey
 </h1>
 <p id="answerall" style="display: none;">
 <font color="red">  You must fill in all the required fields! </font></p>
 
 <form role="form" name="form5" method="post" action="checknew.php">
-
+<p><b>Select a module:</b></p>
 <select name="modules" id="modules">
 <option value="" selected disabled>Module</option>
 <?php 
@@ -197,20 +197,31 @@ echo '<option value="error" selected disabled>There has been an error.Please con
 }
 ?>
 </select>
-<br>
+<br><br>
 <p><b>Feedback Type:</b></p>
-<p>Single Lecture Feedback<input type="radio" name="wholemod"  value="1" onclick="lecture()"> <br>
-Whole Module Feedback<input type="radio" name="wholemod" value="0" onclick="module()"  checked> </p>
+<p>Single Lecture Feedback  <input type="radio" name="lecfbk"  value="1" onclick="lecture()" <?php if ($_COOKIE['missing_cook'] == 1){
+	if ($_COOKIE['lecfbk_mcook'] == 1){
+	echo "checked";	
+	}
+	}?>> <br>
+Whole Module Feedback  <input type="radio" name="lecfbk" value="0" onclick="module()"  <?php if ($_COOKIE['missing_cook'] == 1){
+	if ($_COOKIE['lecfbk_mcook'] == 0){
+	echo "checked";	
+	}}
+	else {
+	echo "checked";
+	}
+	?>> </p>
 
 <div style="display: inline-block;"> <p> <b>Passphrase:</b> <input name="Passphrase" type="text" <?php echo 'value="'.$_COOKIE['passphrase_mcook'].'" ' ?> id="Passphrase" onkeyup="showResult(this.value)"></p></div> <div style="display: inline-block;" id="livesearch"></div>
 <p><b>Brief Description:</b> <input name="description" type="text" <?php echo 'value="'.$_COOKIE['description_mcook'].'" ' ?> id="description"></p>
-<p><b>Expiry Date:</b><input id="expdate" type="text" <?php echo 'value="'.$_COOKIE['expdate_mcook'].'" '?> name="expdate"><img src="images/cal.gif" onclick="javascript:NewCssCal('expdate', 'yyyyMMdd','','','','','future')" style="cursor:pointer"/></p>
+<p><b>Expiry Date:</b> <input id="expdate" type="text" <?php echo 'value="'.$_COOKIE['expdate_mcook'].'" '?> name="expdate" onclick="javascript:NewCssCal('expdate', 'yyyyMMdd','','','','','future')">  <img src="images/cal.gif" onclick="javascript:NewCssCal('expdate', 'yyyyMMdd','','','','','future')" style="cursor:pointer"/></p>
 
 <p id="cwork" style="display: none;"><b>Does this module have coursework?</b><br>
 Yes<input type="radio" name="cw"  value="1" <?php if (($_COOKIE['cw_mcook'] == 1)|| !(isset($_COOKIE['cw_mcook']) )) echo 'checked'?>> No<input type="radio" name="cw" value="0" <?php if ($_COOKIE['cw_mcook'] == 0) echo 'checked'?>> </p>
 
-<p id="lectopic" style="display: none;"><b>Lecture Topic:</b><input name="lecturetopic" type="text" <?php echo 'value="'.$_COOKIE['lecturetopic_mcook'].'" '?> id="lecturetopic"></p>
-<p id="lecdate" style="display: none;"><b>Lecture Date:</b><input name="lecturedate" type="text" <?php echo 'value="'.$_COOKIE['lecturedate_mcook'].'" '?> id="lecturedate"><img src="images/cal.gif" onclick="javascript:NewCssCal('lecturedate', 'yyyyMMdd')" style="cursor:pointer"/></p>
+<p id="lectopic" style="display: none;"><b>Lecture Topic:</b> <input name="lecturetopic" type="text" <?php echo 'value="'.$_COOKIE['lecturetopic_mcook'].'" '?> id="lecturetopic"></p>
+<p id="lecdate" style="display: none;"><b>Lecture Date:</b> <input name="lecturedate" type="text" <?php echo 'value="'.$_COOKIE['lecturedate_mcook'].'" '?> id="lecturedate" onclick="javascript:NewCssCal('lecturedate', 'yyyyMMdd')">  <img src="images/cal.gif" onclick="javascript:NewCssCal('lecturedate', 'yyyyMMdd')" style="cursor:pointer"/></p>
 <p><button type="submit" class="btn btn-default" name="SubmitNewQuiz" id="SubmitNewQuiz" value="Submit">Submit</button></p>
 <br>
 </form>
@@ -259,15 +270,24 @@ Yes<input type="radio" name="cw"  value="1" <?php if (($_COOKIE['cw_mcook'] == 1
   </script>
   <script type="text/javascript">
   function emptyanswers(){
-	e = <?php if ($_COOKIE['missing_cook'] == 1){
-	echo 1;	
+	<?php if ($_COOKIE['missing_cook'] == 1){
+	echo "e = 1;";	
 	}
 	else {
-	echo 0;
-	}  ?>;
+	echo "e = 0;";
+	}  
+	if ($_COOKIE['lecfbk_mcook'] == 1){
+	echo "l = 1;";	
+	}
+	else {
+	echo "l = 0;";
+	}?>
 
 	if (e == 1){
 	show('answerall');
+	if (l == 1){
+	lecture()
+	}
 	}
 	}
    </script>

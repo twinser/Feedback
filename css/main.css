@@ -14,3 +14,5 @@ margin-left: 15px;
 .comment-table{
 max-width: auto;
 }
+
+ .center {text-align: center; margin-left: auto; margin-right: auto; margin-bottom: auto; margin-top: auto;}
