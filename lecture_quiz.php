@@ -14,6 +14,7 @@ header("location:passphrase_login.php");
 <html lang="en">
 
 <head>
+<title>Survey</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -117,7 +118,7 @@ echo $_COOKIE['topic_cook'] ;
 <input type="radio" name="q9c" id="44" <?php if ($_COOKIE['9c_cook']==5) echo "checked";?> value="5"> <label for="44">Excellent</label></p> </div>
 
 <p><button type="submit" class="btn btn-default" name="SubmitLectureQuiz" value="Submit">Submit</button></p></form><br>
-<p> <a class="btn btn-warning" href="selectfbtypelec.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Cancel</a> </p>
+<p> <a class="btn btn-warning" href="selectfbtypelec.php" role="button">Go back to menu without submitting</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Cancel feedback</a> </p>
 </div>
 
 
