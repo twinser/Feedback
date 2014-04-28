@@ -1,4 +1,5 @@
 <?php 
+//check if passphrase has been entered
 if (isset($_COOKIE['passphrase_cook'])){
 
 	if ($_COOKIE['lecture_cook'] == "1"){
@@ -31,13 +32,13 @@ header("location:passphrase_login.php");
 echo $_COOKIE['module_cook'];
 ?>
 </h1>
-
+<!--paragraph shown if not all questions are answered-->
 <p id="answerall" style="display: none;">
 <font color="red">  You must answer all the questions! </font></p>
 <br>
 <form role="form" name="formM" method="post" action="submitm.php">
 
-
+<!--Add questions, one by one . PHP code to check if form was submitted and questions were missed, remembers answers-->
 <p class="text-info"><strong>1.) How interesting did you find the module?</strong></p><p>
 <input type="radio" name="q1" id="1" <?php if ($_COOKIE['1_cook']==1) echo "checked";?> value="1"> <label for="1">Boring</label><br>
 <input type="radio" name="q1" id="2" <?php if ($_COOKIE['1_cook']==2) echo "checked";?> value="2"> <label for="2">Not very interesting</label><br>
@@ -124,20 +125,19 @@ echo $_COOKIE['module_cook'];
 <p> <a class="btn btn-warning" href="selectfbtypemod.php" role="button">Go back to the menu without submitting</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Cancel feedback</a> </p>
 </div>
 <script type="text/javascript">
-
+//function to show a certain element
   function show(id){ 
    document.getElementById(id).style.display='block';
   } 
 </script>
 <script type="text/javascript">
-
+//function to hide a certain element
   function hide(id){ 
    document.getElementById(id).style.display='none';
   }
   </script>
 <script type="text/javascript">
-
-
+//function to delete a cookie
 function del_cookie(name) {
 document.cookie = name +
 '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
@@ -145,7 +145,7 @@ document.cookie = name +
 </script>
 
 <script type="text/javascript">
-
+//function to show question ten, if there is cw
 function number10(){
 x = <?php if ($_COOKIE['coursework_cook'] == 1){
 echo 1;
@@ -159,7 +159,7 @@ show('q10');
 }
 </script>
 <script type="text/javascript">
-
+//function to check if the user was returned here because they didn't answer all the questions
 function emptyanswers(){
 
 e = <?php if ($_COOKIE['missing_cook'] == 1){
@@ -175,7 +175,7 @@ show('answerall');
 }
 </script>
 <script type="text/javascript">
-
+//function to show 7b
 function showsevenb(){
 sevenb = <?php if ($_COOKIE['7_cook'] == 1){
 echo 1;
@@ -191,7 +191,7 @@ show('q7b');
 }
 </script>
 <script type="text/javascript">
-
+//function to show 8b
 function showeightb(){
 eightb = <?php if ($_COOKIE['8_cook'] == 1){
 echo 1;
@@ -207,7 +207,7 @@ show('q8b');
 }
 </script>
 <script type="text/javascript">
-
+//function to show 9b&9c
 function shownineb(){
 nineb = <?php if ($_COOKIE['9_cook'] == 1){
 echo 1;
@@ -223,7 +223,7 @@ show('q9c');
 }
 </script>
 <script type="text/javascript">
-
+//function for load
 function Load(){
 number10();
 emptyanswers();

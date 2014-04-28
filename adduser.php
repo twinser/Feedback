@@ -301,9 +301,7 @@ window.prev1 = x;
   document.getElementById('module3').options[x].disabled = true;
   document.getElementById('module4').options[x].disabled = true;
   document.getElementById('module5').options[x].disabled = true;
-  
-  
-  }
+   }
 }
   </script>
 <script type="text/javascript">

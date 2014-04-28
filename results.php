@@ -1,4 +1,5 @@
 <?php
+//check user logged in
 if(empty($_COOKIE['user_cook']))
 {
 header("location:admin_login_success.php");
@@ -27,6 +28,7 @@ $row = mysqli_fetch_array($result);
 $lecture = $row['AfterLectureQuiz'];
 $module = $row['ModuleID'];
 $passphrase = $row['Passphrase'];
+//check user can see these results
 if ($_COOKIE['admin_cook'] == 0)
 {
 if ($_COOKIE['module1_cook'] != $module)
@@ -46,8 +48,6 @@ header("location:quizzes.php");
 }
 }
 }
-
-
 
 ob_end_flush();
 
@@ -357,7 +357,6 @@ ob_end_flush();
         ['Extremely interesting', <?php echo $q1ans[4] ?>, <?php echo $q1ans[4] ?>]
         ]);
 		
-		
 		var data2 = google.visualization.arrayToDataTable([
 		['Answer', 'Count'],
 		['Yes', <?php echo $q2ans[0] ?>],
@@ -435,118 +434,7 @@ ob_end_flush();
         ['Too difficult', $q10ans[4],$q10ans[4] ]
         ]);";}?>
 		
-		
-		//OLD WAY, changed to array of arrays for labelling. Kept just in case.
-        // var data = new google.visualization.DataTable();
-        // data.addColumn('string', 'Answer');
-        // data.addColumn('number', 'Count');
-        // data.addRows([
-          // ['Boring', <?php echo $q1ans[0] ?>],
-          // ['Not very interesting', <?php echo $q1ans[1] ?>],
-          // ['Interesting', <?php echo $q1ans[2] ?>],
-          // ['Very interesting', <?php echo $q1ans[3] ?>],
-          // ['Extremely interesting', <?php echo $q1ans[4] ?>]
-        // ]);
-		
-		// var data2 = new google.visualization.DataTable();
-			// data2.addColumn('string', 'Answer');
-			// data2.addColumn('number', 'Count');
-			// data2.addRows([
-			  // ['Yes', <?php echo $q2ans[0] ?>],
-			  // ['No', <?php echo $q2ans[1] ?>],
-					  // ]);
-		
-        // var data3 = new google.visualization.DataTable();
-        // data3.addColumn('string', 'Answer');
-        // data3.addColumn('number', 'Count');
-        // data3.addRows([
-          // ['Too easy', <?php echo $q3ans[0] ?>],
-          // ['Somewhat easy', <?php echo $q3ans[1] ?>],
-          // ['Neither easy nor difficult', <?php echo $q3ans[2] ?>],
-          // ['Challenging', <?php echo $q3ans[3] ?>],
-          // ['Too difficult', <?php echo $q3ans[4] ?>]
-        // ]);
-		
-		
-        // var data4 = new google.visualization.DataTable();
-        // data4.addColumn('string', 'Answer');
-        // data4.addColumn('number', 'Count');
-        // data4.addRows([
-          // ['Not enough interaction', <?php echo $q4ans[0] ?>],
-          // ['Some interaction', <?php echo $q4ans[1] ?>],
-          // ['Enough interaction', <?php echo $q4ans[2] ?>],
-          // ['Lots of interaction', <?php echo $q4ans[3] ?>],
-          // ['Too Much interation', <?php echo $q4ans[4] ?>]
-        // ]);
-		
-        // var data5 = new google.visualization.DataTable();
-        // data5.addColumn('string', 'Answer');
-        // data5.addColumn('number', 'Count');
-        // data5.addRows([
-          // ['Too slow', <?php echo $q5ans[0] ?>],
-          // ['Slow', <?php echo $q5ans[1] ?>],
-          // ['Well paced', <?php echo $q5ans[2] ?>],
-          // ['Fast', <?php echo $q5ans[3] ?>],
-          // ['Too fast', <?php echo $q5ans[4] ?>]
-        // ]);
-		
-        // var data6 = new google.visualization.DataTable();
-        // data6.addColumn('string', 'Answer');
-        // data6.addColumn('number', 'Count');
-        // data6.addRows([
-          // ['Yes', <?php echo $q6ans[0] ?>],
-          // ['No', <?php echo $q6ans[1] ?>],
-                  // ]);
-				  
-        // var data7b = new google.visualization.DataTable();
-        // data7b.addColumn('string', 'Answer');
-        // data7b.addColumn('number', 'Count');
-        // data7b.addRows([
-          // ['Yes', <?php echo $q7bans[0] ?>],
-          // ['No', <?php echo $q7bans[1] ?>],
-           // ]);
-		   
-        // var data8b = new google.visualization.DataTable();
-        // data8b.addColumn('string', 'Answer');
-        // data8b.addColumn('number', 'Count');
-        // data8b.addRows([
-          // ['Yes', <?php echo $q8bans[0] ?>],
-          // ['No', <?php echo $q8bans[1] ?>],
-           // ]);   
-		   
-        // var data9b = new google.visualization.DataTable();
-        // data9b.addColumn('string', 'Answer');
-        // data9b.addColumn('number', 'Count');
-        // data9b.addRows([
-          // ['Too easy', <?php echo $q9bans[0] ?>],
-          // ['Somewhat easy', <?php echo $q9bans[1] ?>],
-          // ['Neither easy nor difficult', <?php echo $q9bans[2] ?>],
-          // ['Challenging', <?php echo $q9bans[3] ?>],
-          // ['Too difficult', <?php echo $q9bans[4] ?>]
-        // ]);
-		
-        // var data9c = new google.visualization.DataTable();
-        // data9c.addColumn('string', 'Answer');
-        // data9c.addColumn('number', 'Count');
-        // data9c.addRows([
-          // ['Non-existent', <?php echo $q9cans[0] ?>],
-          // ['Sometimes there', <?php echo $q9cans[1] ?>],
-          // ['Good', <?php echo $q9cans[2] ?>],
-          // ['Very good', <?php echo $q9cans[3] ?>],
-          // ['Excellent', <?php echo $q9cans[4] ?>]
-        // ]);
-		
-        // var data10 = new google.visualization.DataTable();
-        // data10.addColumn('string', 'Answer');
-        // data10.addColumn('number', 'Count');
-        // data10.addRows([
-          // ['Too easy', $q10ans[0] ],
-          // ['Somewhat easy', $q10ans[1] ],
-          // ['Neither easy nor difficult', $q10ans[2]],
-          // ['Challenging', $q10ans[3] ],
-          // ['Too difficult', $q10ans[4] ]
-        // ]);
-        
+		        
         // Set chart options
         var options = {'title':'How interesting did you find the <?php if ($lecture != 1) { echo "module"; } else{ echo "lecture"; }?>?',
                        'width':600,
@@ -620,7 +508,7 @@ ob_end_flush();
         chart9c.draw(data9c, options9c);
         <?php if ($lecture != 1) { echo "var chart10 = new google.visualization.BarChart(document.getElementById('q10'));
         chart10.draw(data10, options10);" ;} ?>
-		
+		//convert data to csv 
 	csv = google.visualization.dataTableToCsv(data);
 	csv2 = google.visualization.dataTableToCsv(data2);
 	csv3 = google.visualization.dataTableToCsv(data3);
@@ -632,6 +520,7 @@ ob_end_flush();
 	csv9b = google.visualization.dataTableToCsv(data9b);
 	csv9c = google.visualization.dataTableToCsv(data9c);
 	<?php if ($lecture != 1) { echo "csv10 = google.visualization.dataTableToCsv(data10);" ;} ?>
+	//make csv of all the options
 	csvall = options.title + "\n" + csv + "\n" + options2.title + "\n" + csv2 + "\n" + options3.title + "\n" + csv3 + "\n" + options4.title + "\n" + csv4 + "\n" + options5.title + "\n" + csv5 + "\n" + options6.title + "\n" + csv6 + "\n" + options7b.title + "\n" + csv7b + "\n" + options8b.title + "\n" + csv8b + "\n" + options9b.title + "\n" + csv9b + "\n" + options9c.title + "\n" + csv9c + "\n" <?php if ($lecture != 1) { echo '+ options10.title + "\n" + csv10 + "\n"';}?>; 
 	
       }
@@ -644,11 +533,7 @@ ob_end_flush();
    <h1>
    <?php echo $module . " " ?>Results - Passhprase: "<?php echo $passphrase ?>"
    </h1>
-	<!--
-		<a href="javascript:grChartImg.ShowImage('q1', true)">Click me</a>
-		<a href="javascript:getImageData('q1')">No, click me</a>
-		<a href="javascript:demo()" class="button">Run Code</a>
-																			-->
+
 	<p><a class="btn btn-primary" href="javascript:pdf()" role="button">Download all as PDF</a> <a class="btn btn-success" href="javascript:getcsv(11)" role="button">Download all as CSV</a> <a class="btn btn-info" href="detailed_results.php?quiz=<?php echo $_GET['quiz'] ?>" role="button">View detailed feedback</a>
 	<a class="btn btn-warning" href="quizzes.php" role="button">Go back</a> <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 	<div id="results">
@@ -717,6 +602,7 @@ ob_end_flush();
 	<br>
 	<p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 	<script type="text/javascript">
+	//get image data function to get the data string for a specified graph
 	function getImageData(number){
 	var div_name
 	var filename
@@ -786,7 +672,7 @@ ob_end_flush();
   }
   </script>
   <script type="text/javascript">
-  	
+  	//function to post without submitting form
 	//credit to Rakesh Pai http://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit/133997#133997
 	function post_to_url(path, params, method) {
     method = method || "post"; // Set method to post by default if not specified.
@@ -811,21 +697,11 @@ ob_end_flush();
     document.body.appendChild(form);
     form.submit();
 }
-	
-	
-	/* function img_download(data){
-	var str = "save.php?i=";
-	str = str + data;
-	str = str + "f=howinteresting.jpg";
-	window.open(str,"_self")
-	}
-   */</script>
+	</script>
   <script type="text/javascript">
-  
+  //create pdf function
   function pdf() {
 
-  //grChartImg.SetImageFormat = {type:'jpeg'};
-  
   var imgDataQ1=grChartImg.GetImageData('q1');
   var imgDataQ2=grChartImg.GetImageData('q2');
   var imgDataQ3=grChartImg.GetImageData('q3');
@@ -859,7 +735,7 @@ doc.text(20, 20, '<?php echo $module. ' Results - Passhprase: "' . $passphrase .
     }
 </script>
 <script type = "text/javascript">
-
+//function to retrieve csv data
 function getcsv(csvnumber){
 var thiscsv
 var filename
@@ -918,11 +794,12 @@ var filename
 	filename = 'howinteresting.csv';
 	break;
 	}
-	//post_to_url('save.php', {d: thiscsv, f: filename});
+	
 	downloadCSV(thiscsv, filename)
 	}
 </script>
 <script type="text/javascript">
+//function to download the csv
 function downloadCSV (csv_out, filename) {
             var blob = new Blob([csv_out], {type: 'text/csv;charset=utf-8'});
             var url  = window.URL || window.webkitURL;
