@@ -47,6 +47,9 @@ else {
 $mod5 = "'" . $_POST['module5'] . "'";
  } 
 
+ 
+
+ 
 if ($admin == 1){
 $mod1 = 'NULL';
 $mod2 = 'NULL';
@@ -55,6 +58,28 @@ $mod4 = 'NULL';
 $mod5 = 'NULL';
 }
 
+if ($mod1 == 'NULL'){
+$mod1 = $mod2;
+$mod2 = $mod3;
+$mod3 = $mod4;
+$mod4 = $mod5;
+$mod5 = 'NULL';
+}
+if ($mod2 == 'NULL'){
+$mod2 = $mod3;
+$mod3 = $mod4;
+$mod4 = $mod5;
+$mod5 = 'NULL';
+}
+if ($mod3 == 'NULL'){
+$mod3 = $mod4;
+$mod4 = $mod5;
+$mod5 = 'NULL';
+}
+if ($mod4 == 'NULL'){
+$mod4 = $mod5;
+$mod5 = 'NULL';
+}
 // To protect MySQL injection 
 $userid = stripslashes($userid);
 $password = stripslashes($password);

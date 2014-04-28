@@ -57,10 +57,10 @@ Admin   <input type="radio" name="admin" value="1" onclick="hideall()" <?php if 
 <p style="display: none;">Username <input name="UserID" type="text" id="UserID" <?php echo 'value="'.$userid.'"';?> READONLY><br>
 <h3>Change the password<br><small>Delete the existing characters and type the new password, if desired</small></h3>
 Password <input name="Password" type="password" id="Password" <?php echo 'value="'.$password.'"';?>></p>
-<h3 name="modules" id="modules" style="display: none;">Select up to five modules <br><small>You cannot select the same module twice. To deselect a module, pick the option at the top of the list, named "Module x"</small></h3>
-<select name="module1" id="module1" style="display: none;">
+<h3 name="modules" id="modules" style="display: none;">Select up to five modules <br><small>You cannot select the same module twice. To deselect a module, pick the option at the top of the list (-)</small></h3>
+<select name="module1" id="module1" style="display: none;" onChange="disableOptions1(this.selectedIndex)">
 <!-- Create new dropdown box, same comments apply to the other 4 as well-->
-<option value="" selected disabled>Module 1</option>
+<option value="">-</option>
 <?php 
 //select all the modules
 $sql = "SELECT * FROM Modules";
@@ -71,6 +71,7 @@ while ($row = mysqli_fetch_array($result)) {
 $code = $row['ModuleCode'];
 $name = $row['ModuleName']; 
 echo '<option value="'.$code.'"';
+//if the module is one that applies to the lecturer, select it
 if ($code == $mod1){
 echo 'selected';
 }
@@ -79,8 +80,8 @@ echo '>' .$code .' - '. $name . '</option>';
 
 ?>
 </select>
-<select name="module2" id="module2" style="display: none;">
-<option value="" selected disabled>Module 2</option>
+<select name="module2" id="module2" style="display: none;" onChange="disableOptions2(this.selectedIndex)">
+<option value="">-</option>
 <?php 
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
@@ -97,8 +98,8 @@ echo '>' .$code .' - '. $name . '</option>';
 }
 ?>
 </select>
-<select name="module3" id="module3" style="display: none;">
-<option value="" selected disabled>Module 3</option>
+<select name="module3" id="module3" style="display: none;" onChange="disableOptions3(this.selectedIndex)">
+<option value="">-</option>
 <?php 
 
 $sql = "SELECT * FROM Modules";
@@ -116,8 +117,8 @@ echo '>' .$code .' - '. $name . '</option>';
 }
 ?>
 </select>
-<select name="module4" id="module4" style="display: none;">
-<option value="" selected disabled>Module 4</option>
+<select name="module4" id="module4" style="display: none;" onChange="disableOptions4(this.selectedIndex)">
+<option value="">-</option>
 <?php 
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
@@ -134,8 +135,8 @@ echo '>' .$code .' - '. $name . '</option>';
 }
 ?>
 </select>
-<select name="module5" id="module5" style="display: none;">
-<option value="" selected disabled>Module 5</option>
+<select name="module5" id="module5" style="display: none;" onChange="disableOptions5(this.selectedIndex)">
+<option value="">-</option>
 <?php 
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
