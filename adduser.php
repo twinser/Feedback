@@ -1,10 +1,12 @@
 <?php
+//check if admin is logged in
 if($_COOKIE['admin_cook'] != 1)
 {
 header("location:admin_login_success.php");
 }
 
 else{
+//database stuff
 ob_start();
 $host="localhost"; // Host name 
 $username="nk011269_admin"; // Mysql username 
@@ -12,7 +14,7 @@ $password="Tomw1991"; // Mysql password
 $db_name="nk011269_Feedback"; // Database name 
 $tbl_name="Modules"; // Table name 
 
-// Connect to server and select databse.
+// Connect to server and select database.
 // Create connection
 $con=mysqli_connect($host,$username,$password,$db_name);
 
@@ -22,9 +24,6 @@ if (mysqli_connect_errno($con))
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 }
-  
-  
-  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +37,8 @@ if (mysqli_connect_errno($con))
 <link href="css/main.css" rel="stylesheet">
 
 <script>
+<!-- Code to search the database to see if the username already exists-->
+<!-- Edited from http://www.w3schools.com/php/php_ajax_livesearch.asp -->
 function showResult(str)
 {
 if (str.length==0)
@@ -72,26 +73,27 @@ xmlhttp.send();
 Add new user
 </h1>
 <form role="form" name="form4" method="post" action="checkadd.php">
-<h3> User type </h3>
-<p>Lecturer <input type="radio" name="admin"  value="0" onclick="show('module1')" checked> <br>
+<h3>Select a user type <br><small>Admins have access to all modules and users. Lecturers have access only to the specified modules</small></h3>
+<p>Lecturer <input type="radio" name="admin"  value="0" onclick="show('module1'); show('modules')" checked> <br>
 Admin   <input type="radio" name="admin" value="1" onclick="hideall()" > </p>
+<h3>Choose a username and password <br><small>You cannot pick a username that already exists</small></h3>
 <div style="display: inline-block;"><p>Username <input name="UserID" type="text" id="UserID" onkeyup="showResult(this.value)"></p></div> <div style="display: inline-block;" id="livesearch"></div> 
 <p>Password <input name="Password" type="password" id="Password"></p>
-
+<h3 name="modules" id="modules" style="display: none;">Select up to five modules <br><small>You cannot select the same module twice</small></h3>
+<!-- Create new dropdown box, same comments apply to the other 4 as well-->
 <select name="module1" id="module1" style="display: none;" onclick="show2()" onChange="disableOptions1(this.selectedIndex)">
 <option value="" selected> - </option>
 <?php 
-
+//select all the modules
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
 
-
+//put all of the modules in the drop down box
 while ($row = mysqli_fetch_array($result)) {
 $code = $row['ModuleCode'];
 $name = $row['ModuleName']; 
 echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 }
-
 ?>
 </select>
 <select name="module2" id="module2" style="display: none;" onclick="show3()" onChange="disableOptions2(this.selectedIndex)">
@@ -99,8 +101,6 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 <?php 
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
-
-
 while ($row = mysqli_fetch_array($result)) {
 $code = $row['ModuleCode'];
 $name = $row['ModuleName']; 
@@ -111,11 +111,8 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 <select name="module3" id="module3" style="display: none;" onclick="show4()" onChange="disableOptions3(this.selectedIndex)">
 <option value="" selected> - </option>
 <?php 
-
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
-
-
 while ($row = mysqli_fetch_array($result)) {
 $code = $row['ModuleCode'];
 $name = $row['ModuleName']; 
@@ -128,8 +125,6 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 <?php 
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
-
-
 while ($row = mysqli_fetch_array($result)) {
 $code = $row['ModuleCode'];
 $name = $row['ModuleName']; 
@@ -142,8 +137,6 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 <?php 
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
-
-
 while ($row = mysqli_fetch_array($result)) {
 $code = $row['ModuleCode'];
 $name = $row['ModuleName']; 
@@ -158,6 +151,7 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 <p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 </div>
 <script type="text/javascript">
+<!--Part of the live search functions, see the header-->
 	function imageload(type){
 	if (type == "c")
 	{
@@ -172,35 +166,40 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
 	}
 </script>
   <script type="text/javascript">
-
+<!--function to show a certain element of the page-->
   function show(id){ 
    document.getElementById(id).style.display='block';
   } 
 </script>
 <script type="text/javascript">
-
+<!--function to hide a certain element of the page-->
   function hide(id){ 
    document.getElementById(id).style.display='none';
   }
   </script>
   <script type="text/javascript">
+  <!--function to show the hidden elements of the page-->
   function showall(){
   show('module1');
   show('module2');
   show('module3');
   show('module4');
   show('module5');
+  show('modules');
   }
   </script>
   <script type="text/javascript">
+  <!--function to hide certain elements of the page-->
   function hideall(){
   hide('module1');
   hide('module2');
   hide('module3');
   hide('module4');
   hide('module5');
+  hide('modules');
   }
   </script>
+  <!--Variations of the show and hide functions below-->
   <script type="text/javascript">
   function hide2345(){
   hide('module2');
@@ -263,10 +262,10 @@ echo '<option value="'.$code.'">' .$code .' - '. $name . '</option>';
   }
   }
 </script>
-
+<!--Function to disable the selected option in the rest of the drop down boxes, same functions exist for the other boxes-->
 <script type="text/javascript">
 function disableOptions1(x) {
-//variable prev is equal to the global prev1
+//variable pre1 is equal to the global prev1
 pre1 = window.prev1;
 //reset prev1 so it now contains the new value
 window.prev1 = x;
@@ -506,6 +505,7 @@ window.prev5 = x;
 }
 </script>
 <script type="text/javascript">
+<!--Function to initiate the global previous values to 0 -->
 function initialprev(){
 window.prev1 = 0;
 window.prev2 = 0;
@@ -515,8 +515,10 @@ window.prev5 = 0;
 }
 </script>
 <script type="text/javascript">
+<!--Function to do stuff on load-->
 function Load(){
 show('module1');
+show('modules');
 initialprev();
 }
 </script>

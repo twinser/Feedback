@@ -1,9 +1,9 @@
 <?php
+//check if admin
 if($_COOKIE['admin_cook'] != 1)
 {
 header("location:admin_login_success.php");
 }
-
 else{
 $userid = $_GET['user'];
 ob_start();
@@ -22,9 +22,7 @@ if (mysqli_connect_errno($con))
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-
-
-
+//select the user we are editing from the db
 $sql="SELECT UserID, Password, Admin, Module1, Module2, Module3, Module4, Module5 FROM $tbl_name WHERE UserID='$userid'";
 $result=mysqli_query($con,$sql);
 $row = mysqli_fetch_array($result);
@@ -39,7 +37,6 @@ $mod5 = $row['Module5'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <title>Edit User</title>
 <meta charset="utf-8">
@@ -51,23 +48,25 @@ $mod5 = $row['Module5'];
 <body onload="Load()">
 <div class="container">
 <h1>
-Edit user
+<b>Edit user:</b> <i><?php echo $userid;?></i>
 </h1>
 <form role="form" name="form5" method="post" action="checkedit.php">
-<p><h3> User type </h3>
-Lecturer <input type="radio" name="admin"  value="0" onclick="showall()" <?php if ($admin == 0){ echo 'checked';} ?> > <br>
+<h3>Change the user type <br><small>Admins have access to all modules and users. Lecturers have access only to the specified modules</small></h3>
+<p>Lecturer <input type="radio" name="admin"  value="0" onclick="showall()" <?php if ($admin == 0){ echo 'checked';} ?> > <br>
 Admin   <input type="radio" name="admin" value="1" onclick="hideall()" <?php if ($admin == 1){ echo 'checked';} ?> > </p>
-<p>Username <input name="UserID" type="text" id="UserID" <?php echo 'value="'.$userid.'"';?> READONLY><br>
+<p style="display: none;">Username <input name="UserID" type="text" id="UserID" <?php echo 'value="'.$userid.'"';?> READONLY><br>
+<h3>Change the password<br><small>Delete the existing characters and type the new password, if desired</small></h3>
 Password <input name="Password" type="password" id="Password" <?php echo 'value="'.$password.'"';?>></p>
-
+<h3 name="modules" id="modules" style="display: none;">Select up to five modules <br><small>You cannot select the same module twice. To deselect a module, pick the option at the top of the list, named "Module x"</small></h3>
 <select name="module1" id="module1" style="display: none;">
+<!-- Create new dropdown box, same comments apply to the other 4 as well-->
 <option value="" selected disabled>Module 1</option>
 <?php 
-
+//select all the modules
 $sql = "SELECT * FROM Modules";
 $result=mysqli_query($con,$sql);
 
-
+//put all of the modules in the drop down box
 while ($row = mysqli_fetch_array($result)) {
 $code = $row['ModuleCode'];
 $name = $row['ModuleName']; 
@@ -161,37 +160,42 @@ echo '>' .$code .' - '. $name . '</option>';
 <p> <a class="btn btn-warning" href="users.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 </div>
 <script type="text/javascript">
-
+<!--function to show a certain element of the page-->
   function show(id){ 
    document.getElementById(id).style.display='block';
   } 
 </script>
 <script type="text/javascript">
-
+<!--function to hide a certain element of the page-->
   function hide(id){ 
    document.getElementById(id).style.display='none';
   }
   </script>
   <script type="text/javascript">
+  <!--function to show certain elements of the page-->
   function showall(){
   show('module1');
   show('module2');
   show('module3');
   show('module4');
   show('module5');
+  show('modules');
   }
   </script>
   <script type="text/javascript">
+  <!--function to hide certain elements of the page-->
   function hideall(){
   hide('module1');
   hide('module2');
   hide('module3');
   hide('module4');
   hide('module5');
+  hide('modules');
   }
   </script>
   
   <script type="text/javascript">
+  <!--Function to disable the selected option in the rest of the drop down boxes, same functions exist for the other boxes-->
 function disableOptions1(x) {
 //variable prev is equal to the global prev1
 pre1 = window.prev1;
@@ -433,6 +437,7 @@ window.prev5 = x;
 }
 </script>
 <script type="text/javascript">
+<!--Function to initiate the global previous values to 0 -->
 function initialprev(){
 window.prev1 = 0;
 window.prev2 = 0;
@@ -442,8 +447,9 @@ window.prev5 = 0;
 }
 </script>
 <script type="text/javascript">
+<!--Function to do stuff on load-->
 function Load(){
-showall();
+<?php if ($admin == 1){ echo 'hideall();';} else { echo 'showall();';} ?>
 initialprev();
 disableOptions1(document.getElementById('module1').selectedIndex);
 disableOptions2(document.getElementById('module2').selectedIndex);

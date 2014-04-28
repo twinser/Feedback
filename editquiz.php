@@ -1,4 +1,5 @@
 <?php
+//check user is logged in
 if(empty($_COOKIE['user_cook']))
 {
 header("location:admin_login_success.php");
@@ -11,8 +12,6 @@ $host="localhost"; // Host name
 $username="nk011269_admin"; // Mysql username 
 $password="Tomw1991"; // Mysql password 
 $db_name="nk011269_Feedback"; // Database name 
-
-
 // Connect to server and select databse.
 // Create connection
 $con=mysqli_connect($host,$username,$password,$db_name);
@@ -28,6 +27,27 @@ $sql = "SELECT * FROM Quizzes WHERE QuizID = '$quizid'";
 $result=mysqli_query($con,$sql);  
 $row = mysqli_fetch_array($result);
 setcookie('quizid_cook', $quizid, time()+120);
+$module = $row['ModuleID'];
+//check user has access to module, if not send them to the surveys page
+if ($_COOKIE['admin_cook'] == 0)
+{
+if ($_COOKIE['module1_cook'] != $module)
+{
+if ($_COOKIE['module2_cook'] != $module)
+{
+if ($_COOKIE['module3_cook'] != $module)
+{
+if ($_COOKIE['module4_cook'] != $module)
+{
+if ($_COOKIE['module5_cook'] != $module)
+{
+header("location:quizzes.php");
+}
+}
+}
+}
+}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,63 +65,38 @@ setcookie('quizid_cook', $quizid, time()+120);
 //For this script, visit http://www.javascriptkit.com 
 </script>
 </head>
-<body onload="show('cw')">
+<body>
+<!--Lots of php to follow, essentially fills the fields with the database record-->
 <div class='container'>
 <h1>
 Edit quiz <?php echo $row['QuizID'] . ' - ' .  $row['ModuleID'] ?>
 </h1>
 <h3>
-Quiz created on <?php echo $row['DateAdded'] ?>
+<b>Quiz passphrase:</b> <i><?php echo $row['Passphrase'];?></i> <br><small>Quiz created on <?php echo $row['DateAdded'] ?></small>
 </h3>
 
 <form role="form" name="form6" method="post" action="checkeditquiz.php">
 
-<p><b>Feedback Type:</b></p>
-<p>Single Lecture Feedback<input type="radio" name="wholemod"  value="1" onclick="lecture()" <?php if ($row['AfterLectureQuiz'] == 1) { echo checked; } ?> disabled> <br>
-Whole Module Feedback<input type="radio" name="wholemod" value="0" onclick="module()"  <?php if ($row['AfterLectureQuiz'] == 0) { echo checked; } ?> disabled> </p>
-
-<p><b>Passphrase:</b> <input name="Passphrase" type="text" id="Passphrase" <?php echo 'value="'.$row['Passphrase'].'"';?> READONLY></p>
+<h3><b>Type of feedback survey:</b> <i><?php if ($row['AfterLectureQuiz'] == 1) { echo "Single Lecture Feedback"; } else {echo "Whole Module Feedback";} ?></i></h3>
+<p style="display: none;"><b>Single Lecture Feedback </b> <input type="radio" name="wholemod"  value="1" onclick="lecture()" <?php if ($row['AfterLectureQuiz'] == 1) { echo checked; } ?> disabled> <br>
+<b>Whole Module Feedback </b> <input type="radio" name="wholemod" value="0" onclick="module()"  <?php if ($row['AfterLectureQuiz'] == 0) { echo checked; } ?> disabled> </p>
+<h3>Edit the description or expiry date<br><small>Date Format: YYYY-MM-DD</small></h3>
+<p style="display: none;"><b>Passphrase:</b> <input name="Passphrase" type="text" id="Passphrase" <?php echo 'value="'.$row['Passphrase'].'"';?> READONLY></p>
 <p><b>Brief Description:</b> <input name="description" type="text" id="description" <?php echo 'value="'.$row['Description'].'"';?>></p>
 <p><b>Expiry Date:</b><input id="expdate" type="text" name="expdate" <?php echo 'value="'.$row['ExpiryDate'].'"';?> ><img src="images/cal.gif" onclick="javascript:NewCssCal('expdate', 'yyyyMMdd','','','','','future')" style="cursor:pointer"/></p>
-
-<p id="coursework" <?php if ($row['AfterLectureQuiz'] == 1) { echo 'style="display: none;"'; } ?>><b>Does this module have coursework?</b><br>
-Yes<input type="radio" name="cw"  value="1" <?php if ($row['Coursework'] == 1) { echo checked; } ?>> No<input type="radio" name="cw" value="0" <?php if ($row['Coursework'] == 0) { echo checked; } ?>> </p>
-
+<h3 id="cworkhead" <?php if ($row['AfterLectureQuiz'] == 1) { echo 'style="display: none;"'; } ?>>Does this module have coursework?</h3>
+<p id="coursework" <?php if ($row['AfterLectureQuiz'] == 1) { echo 'style="display: none;"'; } ?>>
+<b>Yes<input type="radio" name="cw"  value="1" <?php if ($row['Coursework'] == 1) { echo checked; } ?>> No</b><input type="radio" name="cw" value="0" <?php if ($row['Coursework'] == 0) { echo checked; } ?>> </p>
+<h3 id="lechead" <?php if ($row['AfterLectureQuiz'] == 0) { echo 'style="display: none;"'; } ?>>Change lecture topic or date <br><small>Date Format: YYYY-MM-DD</small></h3>
 <p id="lectopic" <?php if ($row['AfterLectureQuiz'] == 0) { echo 'style="display: none;"'; } ?>><b>Lecture Topic:</b><input name="lecturetopic" type="text" id="lecturetopic"<?php echo 'value="'.$row['LectureTopic'].'"';?>></p>
 <p id="lecdate" <?php if ($row['AfterLectureQuiz'] == 0) { echo 'style="display: none;"'; } ?>><b>Lecture Date:</b><input name="lecturedate" type="text" id="lecturedate"<?php echo 'value="'.$row['LectureDate'].'"';?>><img src="images/cal.gif" onclick="javascript:NewCssCal('lecturedate', 'yyyyMMdd')" style="cursor:pointer"/></p>
 
 <p><button type="submit" class="btn btn-default" name="SubmitEditQuiz" id="SubmitEditQuiz" value="Submit">Submit</button></p>
 <br>
 </form>
-<p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
+<p> <a class="btn btn-warning" href="quizzes.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 </div>
 
-<script type="text/javascript">
-
-  function show(id){ 
-   document.getElementById(id).style.display='block';
-  } 
-</script>
-<script type="text/javascript">
-
-  function hide(id){ 
-   document.getElementById(id).style.display='none';
-  }
-  </script>
-  <script type="text/javascript">
-  function lecture(){
-  hide('cw');
-  show('lectopic');
-  show('lecdate');
-  }
-  </script>
-  <script type="text/javascript">
-  function module(){
-  show('cw');
-  hide('lectopic');
-  hide('lecdate');
-  }
-  </script>
 </body>
 </html>
 <?php ob_end_flush(); ?>

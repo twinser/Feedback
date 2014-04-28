@@ -16,6 +16,8 @@ header("location:admin_login_success.php");
 
 </head>
 <body class="users-table">
+<h1 class="text-primary"><strong>Surveys</strong> <small>Surveys are shown in order of Module Code. Click a column header to order by that criteria.</small></h1>
+
 <div class="table-responsive"> 
 <table class ="table table-hover table-condensed table-bordered sortable" id="quiz-table">
 <?php

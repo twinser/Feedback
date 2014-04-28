@@ -15,7 +15,8 @@ header("location:admin_login_success.php");
 </head> 
 
 <body class="users-table"> 
-<h1 class="text-primary">Users</h1>
+<h1 class="text-primary"><strong>Users</strong> <small>Click a column header to order by that criteria</small></h1>
+
 <div class="table-responsive"> 
 <table class="table table-hover table-condensed table-bordered sortable" id='user-table'>
 
