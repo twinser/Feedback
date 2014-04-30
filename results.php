@@ -307,7 +307,7 @@ break;
 }
 }
 else{
-//error stuff
+$noresults = 1;
 }
 ob_end_flush();
 ?>
@@ -521,24 +521,24 @@ ob_end_flush();
 	csv9c = google.visualization.dataTableToCsv(data9c);
 	<?php if ($lecture != 1) { echo "csv10 = google.visualization.dataTableToCsv(data10);" ;} ?>
 	//make csv of all the options
-	csvall = options.title + "\n" + csv + "\n" + options2.title + "\n" + csv2 + "\n" + options3.title + "\n" + csv3 + "\n" + options4.title + "\n" + csv4 + "\n" + options5.title + "\n" + csv5 + "\n" + options6.title + "\n" + csv6 + "\n" + options7b.title + "\n" + csv7b + "\n" + options8b.title + "\n" + csv8b + "\n" + options9b.title + "\n" + csv9b + "\n" + options9c.title + "\n" + csv9c + "\n" <?php if ($lecture != 1) { echo '+ options10.title + "\n" + csv10 + "\n"';}?>; 
+	csvall = "Passphrase: <?php echo $passphrase ?>\n\n" + options.title + "\n" + csv + "\n" + options2.title + "\n" + csv2 + "\n" + options3.title + "\n" + csv3 + "\n" + options4.title + "\n" + csv4 + "\n" + options5.title + "\n" + csv5 + "\n" + options6.title + "\n" + csv6 + "\n" + options7b.title + "\n" + csv7b + "\n" + options8b.title + "\n" + csv8b + "\n" + options9b.title + "\n" + csv9b + "\n" + options9c.title + "\n" + csv9c + "\n" <?php if ($lecture != 1) { echo '+ options10.title + "\n" + csv10 + "\n"';}?>; 
 	
       }
 	  
 	
     </script>
   </head>
-
-  <body>
+<?php if ($noresults !=1)
+{ echo'  <body>
    <h1>
-   <?php echo $module . " " ?>Results - Passhprase: "<?php echo $passphrase ?>"
+   <?php echo $module . " " ?>Results - Passhprase: "'. $passphrase .'"
    </h1>
 
-	<p><a class="btn btn-primary" href="javascript:pdf()" role="button">Download all as PDF</a> <a class="btn btn-success" href="javascript:getcsv(11)" role="button">Download all as CSV</a> <a class="btn btn-info" href="detailed_results.php?quiz=<?php echo $_GET['quiz'] ?>" role="button">View detailed feedback</a>
+	<p><a class="btn btn-primary" href="javascript:pdf()" role="button">Download all as PDF</a> <a class="btn btn-success" href="javascript:getcsv(11)" role="button">Download all as CSV</a> <a class="btn btn-info" href="detailed_results.php?quiz='.$_GET['quiz'].'" role="button">View detailed feedback</a>
 	<a class="btn btn-warning" href="quizzes.php" role="button">Go back</a> <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 	<div id="results">
-	<!--Divs that will hold the pie chart-->
-	<!--div style="float: left"-->
+	
+	
 	<div class="row">
 	<div class="col-md-6">
 	<div id="q1" style="width: 600px; height: 450px;"></div>
@@ -592,15 +592,17 @@ ob_end_flush();
 	
 	<div class="row">
 	<div class="col-md-6">
-	<div id="q10"></div>
-	<?php if ($lecture != 1) { echo '<a class="btn btn-info"href="javascript:getImageData(10)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(10)" role="button">Download as CSV</a>' ;} ?>
-	</div>
-	</div>
-    
-	</div>
+	<div id="q10"></div>';
+	if ($lecture != 1) { echo '<a class="btn btn-info"href="javascript:getImageData(10)" role="button">Save image</a> <a class="btn btn-success" href="javascript:getcsv(10)" role="button">Download as CSV</a> </div></div></div>' ;} 
+	}
+	else {
+	echo '<h1>No results yet <small>Check back soon</small></h1>';
+	}
+	?>
+	
 	<br>
 	<br>
-	<p> <a class="btn btn-warning" href="admin_login_success.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
+	<p> <a class="btn btn-warning" href="quizzes.php" role="button">Go back</a>  &nbsp; &nbsp; &nbsp;  <a class="btn btn-danger" href="Logout.php" role="button">Log out</a> </p>
 	<script type="text/javascript">
 	//get image data function to get the data string for a specified graph
 	function getImageData(number){
@@ -610,51 +612,51 @@ ob_end_flush();
 	{
 	case 1:
 	div_name = 'q1';
-	filename = 'howinteresting.jpg';
+	filename = '<?php echo $passphrase ?>-howinteresting.jpg';
 	break;
 	case 2:
 	div_name = 'q2';
-	filename = 'easytofollow.jpg';
+	filename = '<?php echo $passphrase ?>-easytofollow.jpg';
 	break;
 	case 3:
 	div_name = 'q3';
-	filename = 'howdifficult.jpg';
+	filename = '<?php echo $passphrase ?>-howdifficult.jpg';
 	break;
 	case 4:
 	div_name = 'q4';
-	filename = 'lecturerinteraction.jpg';
+	filename = '<?php echo $passphrase ?>-lecturerinteraction.jpg';
 	break;
 	case 5:
 	div_name = 'q5';
-	filename = 'pace.jpg';
+	filename = '<?php echo $passphrase ?>-pace.jpg';
 	break;
 	case 6:
 	div_name = 'q6';
-	filename = 'learnsomething.jpg';
+	filename = '<?php echo $passphrase ?>-learnsomething.jpg';
 	break;
 	case 7:
 	div_name = 'q7b';
-	filename = 'usefulnotes.jpg';
+	filename = '<?php echo $passphrase ?>-usefulnotes.jpg';
 	break;
 	case 8:
 	div_name = 'q8b';
-	filename = 'usefulvisualaids.jpg';
+	filename = '<?php echo $passphrase ?>-usefulvisualaids.jpg';
 	break;
 	case 9:
 	div_name = 'q9b';
-	filename = 'practicaleasy.jpg';
+	filename = '<?php echo $passphrase ?>-practicaleasy.jpg';
 	break;
 	case 9.5:
 	div_name = 'q9c';
-	filename = 'practicalsupport.jpg';
+	filename = '<?php echo $passphrase ?>-practicalsupport.jpg';
 	break;
 	case 10:
 	div_name = 'q10';
-	filename = 'coursework.jpg';
+	filename = '<?php echo $passphrase ?>-coursework.jpg';
 	break;
 	default:
 	div_name = 'q1';
-	filename = 'howinteresting.jpg';
+	filename = '<?php echo $passphrase ?>-howinteresting.jpg';
 	break;
 	}
 
@@ -731,7 +733,7 @@ doc.text(20, 20, '<?php echo $module. ' Results - Passhprase: "' . $passphrase .
   
 
 
-  doc.output('save', 'feedback_results.pdf'); 
+  doc.output('save', '<?php echo $passphrase ?>_feedback_results.pdf'); 
     }
 </script>
 <script type = "text/javascript">
@@ -743,55 +745,55 @@ var filename
 	{
 	case 1:
 	thiscsv = csv;
-	filename = 'howinteresting.csv';
+	filename = '<?php echo $passphrase ?>-howinteresting.csv';
 	break;
 	case 2:
 	thiscsv = csv2;
-	filename = 'easytofollow.csv';
+	filename = '<?php echo $passphrase ?>-easytofollow.csv';
 	break;
 	case 3:
 	thiscsv = csv3;
-	filename = 'howdifficult.csv';
+	filename = '<?php echo $passphrase ?>-howdifficult.csv';
 	break;
 	case 4:
 	thiscsv = csv4;
-	filename = 'lecturerinteraction.csv';
+	filename = '<?php echo $passphrase ?>-lecturerinteraction.csv';
 	break;
 	case 5:
 	thiscsv = csv5;
-	filename = 'pace.csv'
+	filename = '<?php echo $passphrase ?>-pace.csv'
 	break;
 	case 6:
 	thiscsv = csv6;
-	filename = 'learnsomething.csv';
+	filename = '<?php echo $passphrase ?>-learnsomething.csv';
 	break;
 	case 7:
 	thiscsv = csv7b;
-	filename = 'usefulnotes.csv';
+	filename = '<?php echo $passphrase ?>-usefulnotes.csv';
 	break;
 	case 8:
 	thiscsv = csv8b;
-	filename = 'usefulvisualaids.csv';
+	filename = '<?php echo $passphrase ?>-usefulvisualaids.csv';
 	break;
 	case 9:
 	thiscsv = csv9b;
-	filename = 'practicaleasy.csv';
+	filename = '<?php echo $passphrase ?>-practicaleasy.csv';
 	break;
 	case 9.5:
 	thiscsv = csv9c;
-	filename = 'practicalsupport.csv';
+	filename = '<?php echo $passphrase ?>-practicalsupport.csv';
 	break;
 	case 10:
 	thiscsv = csv10;
-	filename = 'coursework.csv';
+	filename = '<?php echo $passphrase ?>-coursework.csv';
 	break;
 	case 11:
 	thiscsv = csvall;
-	filename = 'FeedbackResults.csv';
+	filename = '<?php echo $passphrase ?>-FeedbackResults.csv';
 	break;
 	default:
 	thiscsv = csv;
-	filename = 'howinteresting.csv';
+	filename = '<?php echo $passphrase ?>-howinteresting.csv';
 	break;
 	}
 	

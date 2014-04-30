@@ -4,6 +4,11 @@ if($_COOKIE['admin_cook'] != 1)
 {
 header("location:admin_login_success.php");
 }
+elseif($_COOKIE['user_cook'] == $_GET['user'])
+{
+header( "refresh:3;url=users.php" );
+echo "You can't edit yourself! Ask another admin. Redirecting now";
+}
 else{
 $userid = $_GET['user'];
 ob_start();
@@ -44,6 +49,7 @@ $mod5 = $row['Module5'];
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/main.css" rel="stylesheet">
+
 </head>
 <body onload="Load()">
 <div class="container">
