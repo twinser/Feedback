@@ -1,4 +1,5 @@
 <?php
+//check logged in
 if (isset($_COOKIE['passphrase_cook'])){
 
 	if ($_COOKIE['lecture_cook'] == "1"){
@@ -23,6 +24,7 @@ header("location:passphrase_login.php");
 </head>
 
 <?php
+//check if box is empty after submit
 if (isset($_COOKIE['empty_cook'])){
 
 echo "<body onload=\"show('emptybox'); del_cookie('empty_cook')\">";
@@ -47,6 +49,7 @@ echo $_COOKIE['module_cook'];
 
 <textarea name="Feedback" style="width:70%;height:30%" class="form-control" rows="6">
 </textarea></p>
+<!--show if box is empty-->
 <p id="emptybox" style="display: none;">
 <font color="red"> Please enter some feedback in the box! </font>
 </p>
@@ -59,12 +62,14 @@ echo $_COOKIE['module_cook'];
 </div>
 
 <script type="text/javascript"> 
+//show elements
   function show(id){ 
    document.getElementById(id).style.display='block';
   }; 
 </script> 
 
 <script type="text/javascript">
+//delete cookie
 function del_cookie(name) {
 document.cookie = name +
 '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';

@@ -1,4 +1,5 @@
 <?php
+//check logged in
 if(empty($_COOKIE['user_cook']))
 {
 header("location:admin_login_success.php");
@@ -28,6 +29,7 @@ $lecture = $row['AfterLectureQuiz'];
 $module = $row['ModuleID'];
 $date = $row['LectureDate'];
 $passphrase = $row['Passphrase'];
+//check if user can view this module
 if ($_COOKIE['admin_cook'] == 0)
 {
 if ($_COOKIE['module1_cook'] != $module)
@@ -88,9 +90,7 @@ if (mysqli_connect_errno($con))
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-
-
-
+  //select all reponses and create table
 $sql="SELECT * FROM DetailedResponses WHERE QuizID=$quizid";
 $result=mysqli_query($con,$sql);
 $count=mysqli_num_rows($result);
@@ -102,16 +102,14 @@ if ($count > 0){
   $comment = $row['Response'];
   $datewritten = $row['DateWritten'];
   
- 
-
-echo '<tr><td>'.$datewritten.'</td><td>'.$comment.'</td></tr>';
+  echo '<tr><td>'.$datewritten.'</td><td>'.$comment.'</td></tr>';
  }
 }
 
 else {
 echo '<tr><td>-</td><td>None</td></tr>';
 }
- // End our while loop
+ // End 
 ob_end_flush();
 ?>
 </tbody>

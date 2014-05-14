@@ -1,4 +1,5 @@
 <?php
+//check logged in
 if (isset($_COOKIE['passphrase_cook']))
 {
 	if ($_COOKIE['lecture_cook'] != "1"){

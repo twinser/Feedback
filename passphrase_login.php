@@ -1,8 +1,9 @@
-<!DOCTYPE html>
 <?php
+//check not already logged in
 if (isset($_COOKIE['passphrase_cook']))
 header("location:login_success.php");
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Login</title>
@@ -25,29 +26,31 @@ header("location:login_success.php");
       </form>
 
     </div>
-
+<!--Paragraph to show if quiz has expired -->
 <p id="expired" align="center" style="display: none;">
 <font color="red">That quiz has expired. Please contact your lecturer for more details.</font>
 </p>
+<!--paragraph to show if passphrase is incorrect-->
 <p id="wrongp" align="center" style="display: none;">
 <font color="red">That passphrase is incorrect. Please check your spelling.</font>
 </p>
 
 <script type="text/javascript">
+//delete cookie function
 function del_cookie(name) {
 document.cookie = name +
 '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
 }
 </script>
 <script type="text/javascript">
-
+//function to show elements of the page
   function show(id){ 
    document.getElementById(id).style.display='block';
   } 
 </script>
 
 <script type="text/javascript">
-
+//show expired paragraph
 function showexp(){
 e = <?php if ($_COOKIE['expired_cook'] == 1){
 echo 1;
@@ -64,7 +67,7 @@ del_cookie('expired_cook');
 </script>
 
 <script type="text/javascript">
-
+//show wrong password paragraph
 function showwrongp(){
 w = <?php if ($_COOKIE['wrong_cook'] == 1){
 echo 1;
@@ -83,13 +86,13 @@ del_cookie('wrong_cook');
 
 
 <script type="text/javascript">
-
+//function on load
 function Load(){
 showexp();
 showwrongp();
 }
 </script>
-
+<!--Cookie banner code, from cookiebanner.eu-->
 <script type="text/javascript" id="cookiebanner"
     src="http://cookiebanner.eu/js/cookiebanner.min.js" data-message="This website relies on cookies being placed on your machine in order for it to function correctly. By continuing to visit this site you agree to the use of cookies." data-moreinfo="cookies.html"></script>
 

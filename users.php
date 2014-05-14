@@ -21,8 +21,9 @@ header("location:admin_login_success.php");
 <table class="table table-hover table-condensed table-bordered sortable" id='user-table'>
 
 <?php
-//http://www.sudobash.net/web-dev-populate-phphtml-table-from-mysql-database/
+//From http://www.sudobash.net/web-dev-populate-phphtml-table-from-mysql-database/
 ob_start();
+//database stuff
 $host="localhost"; // Host name 
 $username="nk011269_admin"; // Mysql username 
 $password="Tomw1991"; // Mysql password 
@@ -38,12 +39,10 @@ if (mysqli_connect_errno($con))
   {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
-
-
-
+//select users from db, except logged in user
 $sql="SELECT UserID, Admin, Module1, Module2, Module3, Module4, Module5 FROM $tbl_name WHERE NOT UserID='$loggedin'";
 $result=mysqli_query($con,$sql);
-
+//output the table, as per the db
   echo "<thead><tr><th>Username</th><th>Admin</th><th>Module1</th><th>Module2</th><th>Module3</th><th>Module4</th><th>Module5</th><th> </th></tr></thead><tbody>";
  
   while($row = mysqli_fetch_array($result)){
@@ -59,7 +58,7 @@ $result=mysqli_query($con,$sql);
 
 echo '<tr><td>'.$userid.'</td><td>'.$admin.'</td><td>'.$mod1.'</td><td>'.$mod2.'</td><td>'.$mod3.'</td><td>'.$mod4.'</td><td>'.$mod5.'</td><td><a class="btn btn-info btn-xs" href="edituser.php?user='. $userid . '" role="button">Edit</a> <a class="btn btn-danger btn-xs" href="javascript:deluser(\''. $userid . '\')" role="button">Delete</a></td> </tr>';
  
-} // End our while loop
+} //end
 
 ?>
 </tbody>
@@ -69,6 +68,7 @@ echo '<tr><td>'.$userid.'</td><td>'.$admin.'</td><td>'.$mod1.'</td><td>'.$mod2.'
 <script src="sorttable.js"></script>
  
 <script type="text/javascript">
+//function to show a popup on request to delete
 function deluser(uid){
 var message = "Are you sure you want to delete " + uid + "?";
 var response=confirm(message);

@@ -25,15 +25,9 @@ if (mysqli_connect_errno($con))
 // passphrase sent from form 
 $puserid=$_POST['userid']; 
 
-
-
-
-
 // To protect MySQL injection 
 $puserid = stripslashes($puserid);
 $puserid = mysqli_real_escape_string($con,$puserid);
-
-
 
 mysqli_query($con,"DELETE FROM Users WHERE UserID='$puserid'");
 

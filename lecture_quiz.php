@@ -1,4 +1,5 @@
 <?php
+//check logged in
 if (isset($_COOKIE['passphrase_cook'])){
 
 	if ($_COOKIE['lecture_cook'] != "1"){
@@ -37,11 +38,11 @@ echo $_COOKIE['module_cook'] ;
 echo $_COOKIE['topic_cook'] ;
 ?>
 </h1>
- 
+ <!--shown if not all questions were answered-->
 <p id="answerall" style="display: none;">
 <font color="red">  You must answer all the questions! </font></p>
 
-
+<!--questions below, php to check if the person has been returned, if so selects their answers-->
 <form role="form" name="formL" method="post" action="submitl.php">
 <p class="text-info"><strong>1.) How interesting did you find the lecture?</strong></p><p>
 <input type="radio" name="q1" id="1" <?php if ($_COOKIE['1_cook']==1) echo "checked";?> value="1"> <label for="1">Boring</label><br>
@@ -123,6 +124,7 @@ echo $_COOKIE['topic_cook'] ;
 
 
 <script type="text/javascript"> 
+//show function
   function show(id){ 
    document.getElementById(id).style.display='block';
   }; 
@@ -130,6 +132,7 @@ echo $_COOKIE['topic_cook'] ;
 
 
 <script type="text/javascript"> 
+//hide function
   function hide(id){ 
    document.getElementById(id).style.display='none';
   }; 
@@ -137,8 +140,7 @@ echo $_COOKIE['topic_cook'] ;
 
 
 <script type="text/javascript">
-
-
+//delete cookie function
 function del_cookie(name) {
 document.cookie = name +
 '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
@@ -146,7 +148,7 @@ document.cookie = name +
 </script>
 
 <script type="text/javascript">
-
+//check for missing answers
 function emptyanswers(){
 
 e = <?php if ($_COOKIE['missing_cook'] == 1){
@@ -161,6 +163,7 @@ show('answerall');
 }
 }
 </script>
+<!--showing question functions follow-->
 <script type="text/javascript">
 
 function showsevenb(){
@@ -210,7 +213,7 @@ show('q9c');
 }
 </script>
 <script type="text/javascript">
-
+//load function
 function Load(){
 emptyanswers();
 showsevenb()
